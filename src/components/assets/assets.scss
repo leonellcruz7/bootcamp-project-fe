@@ -1,0 +1,23 @@
+.input-container {
+  @apply flex flex-col gap-2;
+  > .input-field {
+    @apply bg-neutral100 h-10 rounded-[4px] outline-none border-none py-3 px-4 text-neutral400 font-light;
+    &::placeholder {
+      @apply text-neutral400 font-light;
+    }
+    &:focus {
+      border: 1px solid #d1d5db;
+      box-shadow: 0px 0px 0px 2px #e5e7eb;
+      background-color: #fff;
+    }
+  }
+  > .error-message {
+    @apply text-red font-light text-[16px];
+  }
+  > .label-text {
+    @apply font-bold text-[12.8px];
+    > .required {
+      @apply text-red;
+    }
+  }
+}
