@@ -1,2 +1,16 @@
 @import "./styles/button.scss";
 @import "./components/assets/assets.scss";
+@import "./components/components.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.App {
+  background: #ebf0f4;
+  min-height: 100vh;
+  @apply text-neutral800;
+}

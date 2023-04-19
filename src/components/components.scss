@@ -1,0 +1,46 @@
+.postcard-container {
+  @apply w-full max-w-[560px] h-[317px] bg-white rounded-[4px] shadow-primary overflow-hidden flex;
+}
+
+.actions-container {
+  @apply text-neutral300 w-[56px] h-full flex flex-col
+    justify-between items-center p-4 bg-neutral100;
+  .icon {
+    transition: 0.2s ease;
+    &:hover {
+      @apply text-neutral700 text-[110%];
+    }
+  }
+}
+
+.vote-wrapper {
+  @apply flex flex-col items-center gap-1;
+}
+
+.control-wrapper {
+  @apply flex flex-col gap-1;
+}
+
+.content-wrapper {
+  @apply w-full m-4 overflow-hidden;
+}
+
+.user-information {
+  @apply flex justify-between items-center;
+}
+
+.post-content {
+  > .image-holder {
+    @apply overflow-hidden mt-1 cursor-pointer;
+  }
+}
+
+.tags-card {
+  @apply max-w-[240px] bg-white rounded-[4px] p-4;
+  > .tag-item {
+    @apply p-2 cursor-pointer text-xs;
+    &:hover {
+      @apply bg-primary50;
+    }
+  }
+}
