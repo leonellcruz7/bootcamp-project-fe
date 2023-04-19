@@ -17,7 +17,7 @@
     @apply text-red font-light text-[16px];
   }
   > .label-text {
-    @apply font-bold text-[12.8px];
+    @apply font-normal text-sm;
     > .required {
       @apply text-red;
     }
