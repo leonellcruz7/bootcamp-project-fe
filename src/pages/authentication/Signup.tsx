@@ -24,9 +24,9 @@ export default function Signup() {
       <div className="w-full h-[100vh] bg-white p-10">
         <div className="text-right">
           <p className="text-sm font-light">
-            New to Mashup Garage Blogs?{" "}
-            <a href="/sign-up" className="text-sm">
-              Sign up
+            Already a member?{" "}
+            <a href="/" className="text-sm">
+              Login{" "}
             </a>
           </p>
         </div>
