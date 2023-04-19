@@ -1,5 +1,9 @@
 .input-field {
   @apply bg-neutral100 h-12 rounded-[4px] outline-none border-none py-3 px-4 text-neutral400 font-light w-full;
+  &.textarea {
+    @apply h-[320px];
+    resize: none;
+  }
   &::placeholder {
     @apply text-neutral400 font-light;
   }
@@ -57,4 +61,14 @@
 .search-wrapper {
   width: 100%;
   max-width: 560px;
+}
+
+.tags-button {
+  @apply w-fit rounded-[4px] border-[1px]  px-2 py-[10.5px] flex items-center border-neutral300 text-neutral300;
+  &:hover {
+    @apply scale-[1.01];
+  }
+  &.active {
+    @apply border-primary500 text-primary500;
+  }
 }

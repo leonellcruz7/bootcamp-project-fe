@@ -8,6 +8,16 @@ export interface InputTypes {
   showError: boolean;
 }
 
+export interface TextareaTypes extends Omit<InputTypes, "onChange" | "type"> {
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
 export interface OptionTypes {
   options: string[];
+}
+
+export interface TagsTypes {
+  label: string;
+  active: boolean;
+  onClick: () => void;
 }
