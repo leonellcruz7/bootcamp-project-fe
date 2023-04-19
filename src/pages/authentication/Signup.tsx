@@ -25,7 +25,7 @@ export default function Signup() {
         <div className="text-right">
           <p className="text-sm font-light">
             Already a member?{" "}
-            <a href="/" className="text-sm">
+            <a href="/login" className="text-sm">
               Login{" "}
             </a>
           </p>
