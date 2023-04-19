@@ -11,10 +11,10 @@
 }
 
 .input-container {
-  @apply flex flex-col gap-2;
+  @apply gap-2 flex flex-col;
 
   > .error-message {
-    @apply text-red font-light text-[16px];
+    @apply text-[16px] text-red font-light;
   }
   > .label-text {
     @apply font-normal text-sm;
@@ -25,9 +25,9 @@
 }
 
 .profile-menu {
-  @apply bg-white absolute w-[210px] mt-1 shadow-primary rounded-[4px] py-1;
+  @apply rounded-[4px] py-1 bg-white absolute w-[210px] mt-1 shadow-primary;
   > .menu-item {
-    @apply p-4 cursor-pointer text-sm flex items-center gap-2;
+    @apply p-4 cursor-pointer text-sm gap-2 flex items-center;
     transition: 0.2s ease;
     &:hover {
       @apply bg-primary50;
@@ -45,9 +45,9 @@
 }
 
 .logo-container {
-  @apply flex gap-[6px];
+  @apply gap-[6px] flex;
   > .image-wrapper {
-    @apply w-[224px];
+    width: 224px;
   }
   > .logo-text {
     @apply text-lg font-light;
@@ -55,5 +55,6 @@
 }
 
 .search-wrapper {
-  @apply w-full max-w-[560px];
+  width: 100%;
+  max-width: 560px;
 }

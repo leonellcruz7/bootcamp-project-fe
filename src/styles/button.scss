@@ -6,7 +6,7 @@
     @apply bg-primary500 text-white hover:bg-primary800;
 
     &:disabled {
-      @apply opacity-[.4];
+      opacity: 0.4;
     }
 
     &.danger {

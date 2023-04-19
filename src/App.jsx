@@ -1,9 +1,5 @@
 import React from "react";
 import "./App.scss";
-import "./styles/button.scss";
-import "./components/assets/assets.scss";
-import "./components/components.scss";
-import "./pages/styles.scss";
 import "remixicon/fonts/remixicon.css";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Routes } from "../node_modules/react-router-dom/dist/index";
