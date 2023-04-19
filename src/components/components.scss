@@ -72,3 +72,14 @@
     @apply text-sm font-bold;
   }
 }
+
+.create-card {
+  @apply w-[640px] bg-white rounded-[4px] p-6;
+  > .form-wrapper {
+    @apply flex flex-col gap-6;
+  }
+}
+
+.tags-wrapper {
+  @apply mt-4 flex flex-wrap gap-2;
+}
