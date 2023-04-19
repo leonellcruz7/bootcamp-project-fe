@@ -56,3 +56,19 @@
     text-decoration: none;
   }
 }
+
+.profile-card {
+  @apply max-w-[320px] w-full h-[278px] bg-white rounded-[4px] overflow-hidden border-[1px] border-neutral200;
+}
+
+.profile-cover {
+  @apply h-[45%] bg-primary400;
+  background-image: url("../assets/images/Pattern.png");
+}
+
+.profile-details {
+  @apply h-[55%] p-6 flex flex-col justify-end gap-4;
+  > .profile-name {
+    @apply text-sm font-bold;
+  }
+}

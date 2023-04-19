@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "../components/assets/Navbar";
-import Trending from "../components/Trending";
-import PostCard from "../components/PostCard";
-import TagsCard from "../components/TagsCard";
-import Options from "../components/Options";
+import Trending from "../components/feed/Trending";
+import PostCard from "../components/feed/PostCard";
+import TagsCard from "../components/feed/TagsCard";
+import Options from "../components/feed/Options";
 
 export default function Feed() {
   const terms = [
@@ -24,7 +24,7 @@ export default function Feed() {
   return (
     <div>
       <Navbar />
-      <div className="body">
+      <div className="body max-w-[840px]">
         <Trending />
         <div className="divider horizontal"></div>
         <div className="flex gap-10">
