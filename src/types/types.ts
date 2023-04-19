@@ -7,3 +7,7 @@ export interface InputTypes {
   error: string;
   showError: boolean;
 }
+
+export interface OptionTypes {
+  options: string[];
+}

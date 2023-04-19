@@ -1,9 +1,9 @@
 .button {
   transition: 0.2s ease;
-  @apply text-[16px] font-semibold px-6 py-3 rounded-[4px];
+  @apply text-[16px] font-semibold px-6 py-3 rounded-[4px] w-full;
 
   &.primary-button {
-    @apply bg-primary600 text-white hover:bg-primary800;
+    @apply bg-primary500 text-white hover:bg-primary800;
 
     &:disabled {
       @apply opacity-[.4];
