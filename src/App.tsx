@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.scss";
-import Input from "./components/assets/Input";
+import "remixicon/fonts/remixicon.css";
+import PostCard from "./components/PostCard";
+import TagsCard from "./components/TagsCard";
 
 function App() {
-  const [val, setVal] = useState<string>("");
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVal(e.target.value);
-    console.log(e.target.value);
-  };
-  return <div className="App p-10"></div>;
+  return (
+    <div className="App p-10">
+      <TagsCard />
+    </div>
+  );
 }
 
 export default App;
