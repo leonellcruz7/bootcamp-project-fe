@@ -6,6 +6,7 @@ import { Route, Routes } from "../node_modules/react-router-dom/dist/index";
 import Login from "./pages/authentication/Login";
 import Signup from "./pages/authentication/Signup";
 import Feed from "./pages/Feed";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/" element={<Feed />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>
