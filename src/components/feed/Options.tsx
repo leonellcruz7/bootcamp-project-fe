@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { OptionTypes } from "../types/types";
+import { OptionTypes } from "../../types/types";
 
 const Options: FC<OptionTypes> = ({ options }) => {
   return (
