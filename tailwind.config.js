@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
+      white: "#fff",
+      red: "#E72E23",
       primary50: "#EEF2FF",
       primary100: "#E0E7FF",
       primary200: "#C7D2FE",
@@ -33,6 +35,16 @@ module.exports = {
       sm: "1rem",
       md: "1.25rem",
       lg: "1.563rem",
+    },
+    fontWeight: {
+      bold: 700,
+      semibold: 600,
+      medium: 500,
+      normal: 400,
+      light: 300,
+    },
+    boxShadow: {
+      primary: "0px 4px 16px rgba(0, 0, 0, 0.16)",
     },
   },
   plugins: [],

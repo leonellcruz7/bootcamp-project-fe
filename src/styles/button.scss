@@ -1,0 +1,51 @@
+.button {
+  transition: 0.2s ease;
+  @apply text-[16px] font-semibold px-6 py-3 rounded-[4px] w-full;
+
+  &.primary-button {
+    @apply bg-primary500 text-white hover:bg-primary800;
+
+    &:disabled {
+      @apply opacity-[.4];
+    }
+
+    &.danger {
+      @apply bg-red;
+    }
+  }
+
+  &.secondary-button {
+    @apply border-[1px] border-primary600 text-primary600;
+    &:hover {
+      @apply border-[2px] border-primary700;
+    }
+    &:disabled {
+      @apply border-neutral300 text-neutral300;
+    }
+    &.danger {
+      @apply border-red text-red;
+    }
+  }
+
+  &.tertiary-button {
+    @apply text-neutral800;
+    &:hover {
+      @apply bg-neutral100;
+    }
+    &:disabled {
+      &:hover {
+        @apply bg-white;
+      }
+      @apply text-neutral300;
+    }
+    &.danger {
+      @apply text-red;
+    }
+  }
+  &.link {
+    @apply text-[16px] text-primary700 font-semibold p-0;
+    &:disabled {
+      @apply text-neutral300;
+    }
+  }
+}

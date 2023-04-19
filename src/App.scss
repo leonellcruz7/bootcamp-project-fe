@@ -1,0 +1,31 @@
+@import "./styles/button.scss";
+@import "./components/assets/assets.scss";
+@import "./components/components.scss";
+@import "./pages/styles.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.App {
+  background: #ebf0f4;
+  min-height: 100vh;
+  @apply text-neutral800;
+}
+
+a {
+  @apply text-sm text-primary500 underline;
+}
+
+.body {
+  @apply max-w-[840px] mx-auto py-10;
+}
+
+.divider {
+  &.horizontal {
+    @apply h-[1px] w-full bg-neutral200 my-6;
+  }
+}
