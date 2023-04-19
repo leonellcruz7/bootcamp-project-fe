@@ -30,8 +30,8 @@ export default function CreatePostCard() {
       : setSelectedTags((prev) => prev.filter((tag) => tag !== item));
   };
   return (
-    <div className="w-[640px] bg-white rounded-[4px] p-6">
-      <div className="flex flex-col gap-6">
+    <div className="create-card">
+      <div className="form-wrapper">
         <Input
           value={title}
           placeholder=""
@@ -51,7 +51,7 @@ export default function CreatePostCard() {
         />
         <div>
           <p>Tags</p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="tags-wrapper">
             {tags.map((item, index) => {
               return (
                 <Tags
