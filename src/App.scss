@@ -1,6 +1,7 @@
 @import "./styles/button.scss";
 @import "./components/assets/assets.scss";
 @import "./components/components.scss";
+@import "./pages/styles.scss";
 
 * {
   margin: 0;
@@ -17,4 +18,14 @@
 
 a {
   @apply text-sm text-primary500 underline;
+}
+
+.body {
+  @apply max-w-[840px] mx-auto py-10;
+}
+
+.divider {
+  &.horizontal {
+    @apply h-[1px] w-full bg-neutral200 my-6;
+  }
 }
