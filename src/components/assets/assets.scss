@@ -29,8 +29,11 @@
 }
 
 .profile-menu {
-  @apply rounded-[4px] py-1 bg-white absolute w-[210px] mt-1 shadow-primary;
-  > .menu-item {
+  @apply z-[999] rounded-[4px] py-1 bg-white absolute w-[210px] mt-1 shadow-primary;
+  a {
+    @apply no-underline text-neutral800;
+  }
+  .menu-item {
     @apply p-4 cursor-pointer text-sm gap-2 flex items-center;
     transition: 0.2s ease;
     &:hover {

@@ -32,7 +32,7 @@ export default function Signup() {
         </div>
         <div className="h-full flex justify-center items-center">
           <div className="max-w-[360px] w-full flex flex-col">
-            <p className="text-lg font-medium">Login</p>
+            <p className="text-lg font-medium">Sign up</p>
             <div className="flex flex-col gap-6 mt-6">
               <Input
                 value={email}

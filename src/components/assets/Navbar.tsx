@@ -1,8 +1,11 @@
 import React, { useRef, useState } from "react";
 import logo from "../../assets/images/logo.svg";
+import { handleNavigate } from "../../actions/actions";
+import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 
 export default function Navbar() {
   const menuRef = useRef(null);
+  const navigate = useNavigate();
   const [showMenu, setshowMenu] = useState(false);
 
   const handleShowMenu = () => {
@@ -13,9 +16,12 @@ export default function Navbar() {
     <div className="navbar-container">
       <div className="navbar-wrapper">
         <div className="logo-container">
-          <div className="image-wrapper">
+          <button
+            className="image-wrapper"
+            onClick={() => handleNavigate(navigate, "/")}
+          >
             <img src={logo} alt="" />
-          </div>
+          </button>
           <p className="logo-text">Blogs</p>
         </div>
         <div className="search-wrapper">
@@ -50,14 +56,18 @@ export default function Navbar() {
 const ProfileMenu = () => {
   return (
     <ul className="profile-menu">
-      <li className="menu-item">
-        <i className="ri-user-line"></i>
-        <p>My Profile</p>
-      </li>
-      <li className="menu-item">
-        <i className="ri-logout-box-r-line"></i>
-        <p>Logout</p>
-      </li>
+      <a href="/profile">
+        <li className="menu-item">
+          <i className="ri-user-line"></i>
+          <p>My Profile</p>
+        </li>
+      </a>
+      <a href="/login">
+        <li className="menu-item">
+          <i className="ri-logout-box-r-line"></i>
+          <p>Logout</p>
+        </li>
+      </a>
     </ul>
   );
 };

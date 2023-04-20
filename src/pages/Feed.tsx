@@ -4,8 +4,11 @@ import Trending from "../components/feed/Trending";
 import PostCard from "../components/feed/PostCard";
 import TagsCard from "../components/feed/TagsCard";
 import Options from "../components/feed/Options";
+import { useNavigate } from "../../node_modules/react-router-dom/dist/index";
+import { handleNavigate } from "../actions/actions";
 
 export default function Feed() {
+  const navigate = useNavigate();
   const terms = [
     "User Agreement",
     "Privacy Policy",
@@ -21,6 +24,7 @@ export default function Feed() {
     "Italiano",
     "Português",
   ];
+
   return (
     <div>
       <Navbar />
@@ -38,7 +42,12 @@ export default function Feed() {
             </div>
           </div>
           <div className="max-w-[240px] w-full">
-            <button className="button primary-button">Create Post</button>
+            <button
+              className="button primary-button"
+              onClick={() => handleNavigate(navigate, "/create-post")}
+            >
+              Create Post
+            </button>
             <div className="divider horizontal"></div>
             <TagsCard />
             <div className="mt-4">
