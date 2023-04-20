@@ -10,6 +10,7 @@ export interface InputTypes {
 
 export interface TextareaTypes extends Omit<InputTypes, "onChange" | "type"> {
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  height: string;
 }
 
 export interface OptionTypes {

@@ -43,7 +43,7 @@
     }
   }
   &.link {
-    @apply text-[16px] text-primary700 font-semibold p-0;
+    @apply text-[16px] text-primary700 font-semibold p-0 no-underline text-neutral800;
     &:disabled {
       @apply text-neutral300;
     }
