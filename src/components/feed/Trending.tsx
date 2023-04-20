@@ -5,7 +5,7 @@ export default function Trending() {
   return (
     <div>
       <p className="text-md font-bold">Trending Today</p>
-      <div className="flex gap-3 mt-3">
+      <div className="flex flex-wrap gap-3 mt-3">
         {images.map((item, index) => {
           return (
             <div

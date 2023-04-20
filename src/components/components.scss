@@ -7,18 +7,22 @@
 }
 
 .actions-container {
-  @apply text-neutral300 w-[56px] h-full flex flex-col
+  @apply w-[56px] h-full flex flex-col
     justify-between items-center p-4 bg-neutral100;
-  .icon {
-    transition: 0.2s ease;
-    &:hover {
-      @apply text-[110%] text-neutral700;
-    }
+}
+.icon {
+  @apply text-neutral300;
+  transition: 0.2s ease;
+  &:hover {
+    @apply text-[110%] text-neutral700;
   }
 }
-
 .vote-wrapper {
-  @apply flex flex-col items-center gap-1;
+  @apply text-neutral300 flex flex-col items-center gap-1;
+
+  &.horizontal {
+    @apply flex-row;
+  }
 }
 
 .control-wrapper {
@@ -36,6 +40,9 @@
 .post-content {
   > .image-holder {
     @apply overflow-hidden mt-1 cursor-pointer;
+    img {
+      @apply w-full;
+    }
   }
 }
 

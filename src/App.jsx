@@ -8,6 +8,7 @@ import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
+import ViewPost from "./pages/ViewPost";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/edit-post" element={<EditPost />} />
+          <Route path="/view-post" element={<ViewPost />} />
         </Routes>
       </BrowserRouter>
     </div>
