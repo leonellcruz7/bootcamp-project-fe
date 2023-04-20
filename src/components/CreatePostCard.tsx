@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Input from "./assets/Input";
 import Textarea from "./assets/Textarea";
 import Tags from "./Tags";
@@ -21,9 +21,7 @@ export default function CreatePostCard() {
   const handleBody = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBody(e.target.value);
   };
-  useEffect(() => {
-    console.log(selectedTags);
-  }, [selectedTags]);
+
   const handleTags = (item: string) => {
     !selectedTags.includes(item)
       ? setSelectedTags((prev) => [...prev, item])
