@@ -1,6 +1,9 @@
 import React from "react";
+import { handleNavigate } from "../actions/actions";
+import { useNavigate } from "../../node_modules/react-router-dom/dist/index";
 
 export default function ProfileCard() {
+  const navigate = useNavigate();
   return (
     <div className="profile-card">
       <div className="profile-cover relative px-6">
@@ -8,7 +11,12 @@ export default function ProfileCard() {
       </div>
       <div className="profile-details">
         <p className="profile-name">Kirby Borromeo</p>
-        <button className="button primary-button">Create Post</button>
+        <button
+          className="button primary-button"
+          onClick={() => handleNavigate(navigate, "/create-post")}
+        >
+          Create Post
+        </button>
       </div>
     </div>
   );

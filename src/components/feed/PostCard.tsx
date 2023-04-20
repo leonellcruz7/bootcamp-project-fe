@@ -1,6 +1,9 @@
 import React from "react";
+import { handleNavigate } from "../../actions/actions";
+import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 
 export default function PostCard() {
+  const navigate = useNavigate();
   return (
     <div className="postcard-container">
       <div className="actions-container">
@@ -20,7 +23,7 @@ export default function PostCard() {
           <button>
             <i className="icon ri-share-forward-line"></i>
           </button>
-          <button>
+          <button onClick={() => handleNavigate(navigate, "/edit-post")}>
             <i className="icon ri-pencil-fill"></i>
           </button>
           <button>
