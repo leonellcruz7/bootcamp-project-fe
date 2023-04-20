@@ -40,6 +40,7 @@ export default function CreatePostCard() {
           showError={false}
         />{" "}
         <Textarea
+          height="h-[320px]"
           value={body}
           placeholder=""
           label="Body"

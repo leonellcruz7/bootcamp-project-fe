@@ -28,4 +28,7 @@ a {
   &.horizontal {
     @apply h-[1px] w-full bg-neutral200 my-6;
   }
+  &.vertical {
+    @apply h-full w-[1px] bg-neutral200 my-2;
+  }
 }

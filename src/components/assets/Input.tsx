@@ -20,7 +20,7 @@ const Input: FC<InputTypes> = (props) => {
         {label} <span className="required">*</span>
       </label>
       <input
-        className="input-field"
+        className="input-field input"
         placeholder={placeholder}
         type={type}
         value={value}

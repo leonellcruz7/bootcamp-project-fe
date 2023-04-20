@@ -1,6 +1,8 @@
 import React from "react";
 import { handleNavigate } from "../../actions/actions";
 import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
+import UserInformation from "../UserInformation";
+import PostContent from "../PostContent";
 
 export default function PostCard() {
   const navigate = useNavigate();
@@ -32,29 +34,8 @@ export default function PostCard() {
         </div>
       </div>
       <div className="content-wrapper">
-        <div className="w-full">
-          <div className="user-information">
-            <div className="flex gap-2 items-center cursor-pointer">
-              <div className="w-5 h-5 rounded-[50%] bg-neutral500"></div>
-              <p className="text-sm">Kirby Borromeo</p>
-            </div>
-            <p className="text-xs text-neutral400">
-              <i className="ri-time-line mr-1"></i>6 hours ago
-            </p>
-          </div>
-          <p className="text-xs text-neutral400 mt-1">@bootcamp</p>
-        </div>
-        <div className="post-content mt-2">
-          <p className="font-bold text-md">
-            First UI/UX Session in MG Bootcamp 2023
-          </p>
-          <div className="image-holder">
-            <img
-              src="https://res.cloudinary.com/dyecs1c3j/image/upload/v1681873352/Frame_13_pya8f9.png"
-              alt=""
-            />
-          </div>
-        </div>
+        <UserInformation />
+        <PostContent />
       </div>
     </div>
   );

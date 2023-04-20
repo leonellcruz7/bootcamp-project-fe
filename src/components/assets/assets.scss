@@ -1,7 +1,9 @@
 .input-field {
-  @apply bg-neutral100 h-12 rounded-[4px] outline-none border-none py-3 px-4 text-neutral400 font-light w-full;
+  &.input {
+    @apply h-12;
+  }
+  @apply bg-neutral100 rounded-[4px] outline-none border-none py-3 px-4 text-neutral400 font-light w-full;
   &.textarea {
-    @apply h-[320px];
     resize: none;
   }
   &::placeholder {
