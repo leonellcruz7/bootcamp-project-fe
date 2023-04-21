@@ -22,3 +22,13 @@ export interface TagsTypes {
   active: boolean;
   onClick: () => void;
 }
+
+export interface LoginTypes {
+  username: string;
+  password: string;
+  navigate: (path: string) => void;
+}
+
+export interface SignupTypes extends LoginTypes {
+  email: string;
+}
