@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Input from "../../components/assets/Input";
 import MG from "../../assets/images/MGBackground.svg";
-
+import { signup } from "../../actions/authentication";
+import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 export default function Signup() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +17,9 @@ export default function Signup() {
   };
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+  const handleSignUp = () => {
+    signup({ email, username, password, navigate });
   };
   return (
     <div className="flex">
@@ -57,7 +62,7 @@ export default function Signup() {
                 placeholder=""
                 label="Password"
                 error="test"
-                type="text"
+                type="password"
                 onChange={handlePassword}
                 showError={false}
               />
@@ -67,7 +72,12 @@ export default function Signup() {
               agree to our <a href="/user-agreement">User Agreement</a> and{" "}
               <a href="/privacy">Privacy Policy</a>.
             </p>
-            <button className="button primary-button mt-10">Login</button>
+            <button
+              className="button primary-button mt-10"
+              onClick={handleSignUp}
+            >
+              Login
+            </button>
           </div>
         </div>
       </div>
