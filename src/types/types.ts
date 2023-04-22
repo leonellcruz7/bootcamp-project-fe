@@ -32,3 +32,40 @@ export interface SignupTypes extends LoginTypes {
   email: string;
   navigate: (path: string) => void;
 }
+
+export interface PostAttributes {
+  body: string;
+  tags: string[];
+  title: string;
+  user_id: string;
+  votes: number;
+  created_at: Date;
+  update_at: Date;
+}
+
+export interface PostCardTypes {
+  attributes: PostAttributes;
+  id: string;
+  relationships: any;
+}
+
+export interface PostTypes {
+  post: PostCardTypes;
+}
+
+export interface PostContentType {
+  content: PostAttributes;
+}
+
+export interface UserInfo {
+  email: string;
+  firstname: string;
+  lastname: string;
+  posts: any;
+  username: string;
+  data: any;
+}
+
+export interface UserInfoTypes {
+  info: UserInfo;
+}

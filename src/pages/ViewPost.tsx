@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/assets/Navbar";
-import UserInformation from "../components/UserInformation";
-import PostContent from "../components/PostContent";
+// import UserInformation from "../components/UserInformation";
+// import PostContent from "../components/PostContent";
 import Textarea from "../components/assets/Textarea";
 import Comment from "../components/Comment";
 
@@ -15,8 +15,8 @@ export default function ViewPost() {
       <Navbar />
       <div className="body max-w-[640px]">
         <div className="bg-white w-full p-6 rounded-[4px]">
-          <UserInformation />
-          <PostContent />
+          {/* <UserInformation /> */}
+          {/* <PostContent /> */}
           <div className="my-4 flex justify-between">
             <div className="flex gap-4">
               <div className="vote-wrapper horizontal">

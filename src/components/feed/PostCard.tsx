@@ -1,10 +1,20 @@
-import React from "react";
+import React, { FC, useEffect, useState } from "react";
 import { handleNavigate } from "../../actions/actions";
 import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 import UserInformation from "../UserInformation";
 import PostContent from "../PostContent";
+import { PostTypes } from "../../types/types";
+import { getPostDetails } from "../../actions/feed";
 
-export default function PostCard() {
+const PostCard: FC<PostTypes> = ({ post }) => {
+  const [info, setInfo] = useState<any>();
+  // console.log("post", post);
+  // console.log("info", info);
+
+  useEffect(() => {
+    getPostDetails(post.id, setInfo);
+  }, [post.id]);
+
   const navigate = useNavigate();
   return (
     <div className="postcard-container">
@@ -13,7 +23,7 @@ export default function PostCard() {
           <button>
             <i className="icon ri-arrow-up-line"></i>
           </button>
-          <p className="text-neutral800">1.1K</p>
+          <p className="text-neutral800">{post.attributes.votes}</p>
           <button>
             <i className="icon ri-arrow-down-line"></i>
           </button>
@@ -34,9 +44,11 @@ export default function PostCard() {
         </div>
       </div>
       <div className="content-wrapper">
-        <UserInformation />
-        <PostContent />
+        <UserInformation info={info} />
+        <PostContent content={post.attributes} />
       </div>
     </div>
   );
-}
+};
+
+export default PostCard;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/assets/Navbar";
 import Trending from "../components/feed/Trending";
 import PostCard from "../components/feed/PostCard";
@@ -6,9 +6,17 @@ import TagsCard from "../components/feed/TagsCard";
 import Options from "../components/feed/Options";
 import { useNavigate } from "../../node_modules/react-router-dom/dist/index";
 import { handleNavigate } from "../actions/actions";
+import { getPosts } from "../actions/feed";
 
 export default function Feed() {
   const navigate = useNavigate();
+  const [tag, setTag] = useState("");
+  const [posts, setPosts] = useState([]);
+  console.log("posts", posts);
+
+  useEffect(() => {
+    getPosts({ setPosts });
+  }, []);
   const terms = [
     "User Agreement",
     "Privacy Policy",
@@ -33,12 +41,15 @@ export default function Feed() {
         <div className="divider horizontal"></div>
         <div className="flex gap-10">
           <div className="max-w-[560px]">
-            <p className="text-sm font-medium">Recent posts from @react</p>
+            <p className="text-sm font-medium">
+              Recent posts {tag && `from ${tag}`}
+            </p>
             <div className="flex flex-col gap-3 mt-3">
-              <PostCard />
-              <PostCard />
-              <PostCard />
-              <PostCard />
+              {posts
+                .map((item, index) => {
+                  return <PostCard key={index} post={item} />;
+                })
+                .reverse()}
             </div>
           </div>
           <div className="max-w-[240px] w-full">
@@ -49,7 +60,7 @@ export default function Feed() {
               Create Post
             </button>
             <div className="divider horizontal"></div>
-            <TagsCard />
+            <TagsCard tag={tag} setTag={setTag} />
             <div className="mt-4">
               <Options options={terms} />
               <div className="divider horizontal"></div>

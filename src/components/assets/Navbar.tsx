@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import logo from "../../assets/images/logo.svg";
 import { handleNavigate } from "../../actions/actions";
 import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
+import { logout } from "../../actions/authentication";
 
 export default function Navbar() {
   const menuRef = useRef(null);
@@ -54,6 +55,9 @@ export default function Navbar() {
 }
 
 const ProfileMenu = () => {
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <ul className="profile-menu">
       <a href="/profile">
@@ -62,12 +66,12 @@ const ProfileMenu = () => {
           <p>My Profile</p>
         </li>
       </a>
-      <a href="/login">
+      <button className="w-full" onClick={handleLogout}>
         <li className="menu-item">
           <i className="ri-logout-box-r-line"></i>
           <p>Logout</p>
         </li>
-      </a>
+      </button>
     </ul>
   );
 };

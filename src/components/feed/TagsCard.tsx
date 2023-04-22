@@ -1,14 +1,32 @@
-import React from "react";
+import React, { FC } from "react";
 
-export default function TagsCard() {
+const TagsCard: FC<any> = ({ tag, setTag }) => {
+  const tags = [
+    "@design-talks",
+    "@react",
+    "@ruby",
+    "@case-studies",
+    "@tech-stack",
+    "@bootcamp",
+  ];
+  const handleSelect = (item: string) => {
+    item === tag ? setTag("") : setTag(item);
+  };
   return (
     <ul className="tags-card">
-      <li className="tag-item">@design-talks</li>
-      <li className="tag-item">@design-talks</li>
-      <li className="tag-item">@design-talks</li>
-      <li className="tag-item">@design-talks</li>
-      <li className="tag-item">@design-talks</li>
-      <li className="tag-item">@design-talks</li>
+      {tags.map((item, index) => {
+        return (
+          <button
+            key={index}
+            className={`tag-item ${tag === item && "selected"}`}
+            onClick={handleSelect.bind(null, item)}
+          >
+            {item}
+          </button>
+        );
+      })}
     </ul>
   );
-}
+};
+
+export default TagsCard;
