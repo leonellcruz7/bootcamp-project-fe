@@ -31,7 +31,7 @@ export default function Signup() {
           <p className="text-sm font-light">
             Already a member?{" "}
             <a href="/login" className="text-sm">
-              Signup{" "}
+              Login{" "}
             </a>
           </p>
         </div>
