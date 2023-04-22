@@ -32,3 +32,25 @@ a {
     @apply h-full w-[1px] bg-neutral200 my-2;
   }
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* For vertical scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 10px;
+}
+
+/* For horizontal scrollbar */
+::-webkit-scrollbar-thumb:horizontal {
+  background-color: #aaa;
+  border-radius: 10px;
+}
+
+/* For scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
