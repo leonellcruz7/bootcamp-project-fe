@@ -97,3 +97,7 @@ export interface CreatePost {
 export interface Post {
   post: CreatePost;
 }
+
+export interface Username {
+  username: string;
+}

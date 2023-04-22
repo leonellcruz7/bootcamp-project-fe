@@ -11,6 +11,7 @@ export default function Navbar() {
   const [showMenu, setshowMenu] = useState(false);
   const cookie = new Cookies();
   const current_user = cookie.get("user_id");
+  const current_username = cookie.get("username");
   const handleShowMenu = () => {
     showMenu ? setshowMenu(false) : setshowMenu(true);
   };
@@ -45,7 +46,9 @@ export default function Navbar() {
               >
                 <div className="flex items-center gap-2">
                   <div className="w-10 h-10 bg-neutral200 rounded-[50%]"></div>
-                  <p className="font-500 text-sm truncate">Leonell Cruz</p>
+                  <p className="font-500 text-sm truncate">
+                    {current_username}
+                  </p>
                 </div>
                 <i className="ri-arrow-down-s-line"></i>
               </button>
@@ -71,12 +74,14 @@ export default function Navbar() {
 }
 
 const ProfileMenu = () => {
+  const cookie = new Cookies();
+  const current_username = cookie.get("username");
   const handleLogout = () => {
     logout();
   };
   return (
     <ul className="profile-menu">
-      <a href="/profile">
+      <a href={`/profile/${current_username}`}>
         <li className="menu-item">
           <i className="ri-user-line"></i>
           <p>My Profile</p>
