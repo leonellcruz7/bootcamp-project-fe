@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Input from "../../components/assets/Input";
 import MG from "../../assets/images/MGBackground.svg";
+import { login } from "../../actions/authentication";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -10,6 +11,9 @@ export default function Login() {
   };
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+  const handleLogin = () => {
+    login({ username, password });
   };
   return (
     <div className="flex">
@@ -43,7 +47,7 @@ export default function Login() {
                 placeholder=""
                 label="Password"
                 error="test"
-                type="text"
+                type="password"
                 onChange={handlePassword}
                 showError={false}
               />
@@ -51,7 +55,12 @@ export default function Login() {
             <p className="mt-4">
               <a href="/forgot-password">Forgot your password?</a>
             </p>
-            <button className="button primary-button mt-10">Login</button>
+            <button
+              className="button primary-button mt-10"
+              onClick={handleLogin}
+            >
+              Login
+            </button>
           </div>
         </div>
       </div>
