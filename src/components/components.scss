@@ -49,8 +49,9 @@
 .tags-card {
   @apply max-w-[240px] bg-white rounded-[4px] p-4 border-[1px] border-neutral200;
   > .tag-item {
-    @apply p-2 cursor-pointer text-xs;
-    &:hover {
+    @apply p-2 cursor-pointer text-xs w-full text-left;
+    &:hover,
+    &.selected {
       @apply bg-primary50;
     }
   }
