@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import "remixicon/fonts/remixicon.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/authentication/Login";
 import Signup from "./pages/authentication/Signup";
 import Feed from "./pages/Feed";
@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
 import ViewPost from "./pages/ViewPost";
+import Cookies from "universal-cookie";
 
 function App() {
   return (
@@ -18,10 +19,22 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/" element={<Feed />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/edit-post" element={<EditPost />} />
-          <Route path="/view-post/:postid" element={<ViewPost />} />
+          <Route
+            path="/profile"
+            element={<ProtectedRoute element={<Profile />} />}
+          />
+          <Route
+            path="/create-post"
+            element={<ProtectedRoute element={<CreatePost />} />}
+          />
+          <Route
+            path="/edit-post"
+            element={<ProtectedRoute element={<EditPost />} />}
+          />
+          <Route
+            path="/view-post/:postid"
+            element={<ProtectedRoute element={<ViewPost />} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
@@ -29,3 +42,14 @@ function App() {
 }
 
 export default App;
+
+const ProtectedRoute = ({ element }) => {
+  const cookie = new Cookies();
+  const current_user = cookie.get("user_id");
+
+  if (current_user) {
+    return element;
+  } else {
+    return <Navigate to="/login" />;
+  }
+};

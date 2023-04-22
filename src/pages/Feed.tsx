@@ -11,7 +11,7 @@ import { getPosts } from "../actions/feed";
 export default function Feed() {
   const navigate = useNavigate();
   const [tag, setTag] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [update, setUpdate] = useState(false);
   // console.log("posts", posts);
 
@@ -47,6 +47,13 @@ export default function Feed() {
             </p>
             <div className="flex flex-col gap-3 mt-3">
               {posts
+                .filter((item) => {
+                  if (tag) {
+                    return item.attributes.tags.includes(tag);
+                  } else {
+                    return item;
+                  }
+                })
                 .map((item, index) => {
                   return (
                     <PostCard

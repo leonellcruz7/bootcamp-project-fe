@@ -3,12 +3,14 @@ import logo from "../../assets/images/logo.svg";
 import { handleNavigate } from "../../actions/actions";
 import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 import { logout } from "../../actions/authentication";
+import Cookies from "universal-cookie";
 
 export default function Navbar() {
   const menuRef = useRef(null);
   const navigate = useNavigate();
   const [showMenu, setshowMenu] = useState(false);
-
+  const cookie = new Cookies();
+  const current_user = cookie.get("user_id");
   const handleShowMenu = () => {
     showMenu ? setshowMenu(false) : setshowMenu(true);
   };
@@ -33,21 +35,35 @@ export default function Navbar() {
             <i className="ri-add-line"></i>
           </button>
           <div className="w-[1px] h-10 bg-neutral200"></div>
-          <div ref={menuRef} className="w-[210px] relative">
-            <button
-              onClick={handleShowMenu}
-              className={`flex w-full items-center justify-between gap-2 cursor-pointer ${
-                showMenu && "bg-neutral100"
-              } py-1 px-2 rounded-[4px]`}
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-neutral200 rounded-[50%]"></div>
-                <p className="font-500 text-sm truncate">Leonell Cruz</p>
-              </div>
-              <i className="ri-arrow-down-s-line"></i>
-            </button>
-            {showMenu && <ProfileMenu />}
-          </div>
+          {current_user ? (
+            <div ref={menuRef} className="w-[210px] relative">
+              <button
+                onClick={handleShowMenu}
+                className={`flex w-full items-center justify-between gap-2 cursor-pointer ${
+                  showMenu && "bg-neutral100"
+                } py-1 px-2 rounded-[4px]`}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 bg-neutral200 rounded-[50%]"></div>
+                  <p className="font-500 text-sm truncate">Leonell Cruz</p>
+                </div>
+                <i className="ri-arrow-down-s-line"></i>
+              </button>
+              {showMenu && <ProfileMenu />}
+            </div>
+          ) : (
+            <div>
+              <a
+                href="/login"
+                className="button primary-button truncate text-center"
+              >
+                Login
+              </a>
+              <a href="/sign-up" className="button tertiary-button truncate">
+                Sign up
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </div>
