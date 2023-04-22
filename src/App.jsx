@@ -21,7 +21,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/edit-post" element={<EditPost />} />
-          <Route path="/view-post" element={<ViewPost />} />
+          <Route path="/view-post/:postid" element={<ViewPost />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
+import { CommentDetails } from "../types/types";
+import Moment from "react-moment";
 
-export default function Comment() {
+const Comment: FC<CommentDetails> = ({ details }) => {
+  console.log(details);
+
   return (
     <div className="flex gap-2 overflow-hidden">
       <div className="w-fit">
@@ -9,18 +13,20 @@ export default function Comment() {
       </div>
       <div className="">
         <div className="flex items-center gap-2 ml-1">
-          <p>Adrian Castueras</p>
-          <p className="text-xs text-neutral400">6 hours ago</p>
+          <p>{details.username}</p>
+          <p className="text-xs text-neutral400">
+            <Moment fromNow>{details.updated_at}</Moment>
+          </p>
         </div>
         <div className="mt-2">
-          <p>This looks awesome! Thanks for this, Kirbs!</p>
+          <p>{details.message}</p>
         </div>
         <div className="mt-4 flex gap-3">
           <div className="vote-wrapper horizontal">
             <button>
               <i className="icon ri-arrow-up-line"></i>
             </button>
-            <p className="text-neutral800">1.1K</p>
+            <p className="text-neutral800">{details.votes}</p>
             <button>
               <i className="icon ri-arrow-down-line"></i>
             </button>
@@ -35,4 +41,6 @@ export default function Comment() {
       </div>
     </div>
   );
-}
+};
+
+export default Comment;
