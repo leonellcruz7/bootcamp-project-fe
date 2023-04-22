@@ -76,7 +76,7 @@ export default function Signup() {
               className="button primary-button mt-10"
               onClick={handleSignUp}
             >
-              Login
+              Sign up
             </button>
           </div>
         </div>
