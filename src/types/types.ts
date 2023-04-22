@@ -41,6 +41,7 @@ export interface PostAttributes {
   votes: number;
   created_at: Date;
   update_at: Date;
+  id: string;
 }
 
 export interface PostCardTypes {
@@ -68,4 +69,18 @@ export interface UserInfo {
 
 export interface UserInfoTypes {
   info: UserInfo;
+}
+
+export interface CommentsType {
+  created_at: Date;
+  id: string;
+  message: string;
+  post_id: string;
+  updated_at: string;
+  username: string;
+  votes: number;
+}
+
+export interface CommentDetails {
+  details: CommentsType;
 }

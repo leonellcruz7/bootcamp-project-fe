@@ -3,7 +3,7 @@ import Moment from "react-moment";
 import { UserInfoTypes } from "../types/types";
 
 const UserInformation: FC<UserInfoTypes> = ({ info }) => {
-  console.log("info", info);
+  // console.log("info", info);
   const tags: string[] = info?.data.attributes.tags;
 
   return (
