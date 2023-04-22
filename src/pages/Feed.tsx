@@ -12,11 +12,12 @@ export default function Feed() {
   const navigate = useNavigate();
   const [tag, setTag] = useState("");
   const [posts, setPosts] = useState([]);
+  const [update, setUpdate] = useState(false);
   // console.log("posts", posts);
 
   useEffect(() => {
-    if (posts.length === 0) getPosts({ setPosts });
-  }, [posts]);
+    getPosts({ setPosts });
+  }, [update]);
   const terms = [
     "User Agreement",
     "Privacy Policy",
@@ -47,7 +48,14 @@ export default function Feed() {
             <div className="flex flex-col gap-3 mt-3">
               {posts
                 .map((item, index) => {
-                  return <PostCard key={index} post={item} />;
+                  return (
+                    <PostCard
+                      key={index}
+                      post={item}
+                      update={update}
+                      setUpdate={setUpdate}
+                    />
+                  );
                 })
                 .reverse()}
             </div>

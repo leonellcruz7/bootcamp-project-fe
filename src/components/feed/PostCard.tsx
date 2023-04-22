@@ -7,7 +7,7 @@ import { PostTypes } from "../../types/types";
 import { deletePost, getPostDetails } from "../../actions/feed";
 import Cookies from "universal-cookie";
 
-const PostCard: FC<PostTypes> = ({ post }) => {
+const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
   const [info, setInfo] = useState<any>();
   // console.log("post", post.attributes.user_id);
   // console.log("info", info);
@@ -21,6 +21,7 @@ const PostCard: FC<PostTypes> = ({ post }) => {
 
   const handleDelete = () => {
     deletePost(post.id);
+    setUpdate(!update);
   };
 
   const navigate = useNavigate();

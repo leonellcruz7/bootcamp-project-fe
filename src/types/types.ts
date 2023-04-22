@@ -52,6 +52,8 @@ export interface PostCardTypes {
 
 export interface PostTypes {
   post: PostCardTypes;
+  update: boolean;
+  setUpdate: any;
 }
 
 export interface PostContentType {
