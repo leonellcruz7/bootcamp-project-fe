@@ -12,11 +12,11 @@ export default function Feed() {
   const navigate = useNavigate();
   const [tag, setTag] = useState("");
   const [posts, setPosts] = useState([]);
-  console.log("posts", posts);
+  // console.log("posts", posts);
 
   useEffect(() => {
-    getPosts({ setPosts });
-  }, []);
+    if (posts.length === 0) getPosts({ setPosts });
+  }, [posts]);
   const terms = [
     "User Agreement",
     "Privacy Policy",
