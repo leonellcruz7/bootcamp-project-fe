@@ -4,15 +4,20 @@ import UserInformation from "../components/UserInformation";
 import PostContent from "../components/PostContent";
 import Textarea from "../components/assets/Textarea";
 import Comment from "../components/Comment";
-import { useParams } from "react-router-dom";
-import { getPostDetails } from "../actions/feed";
+import { useNavigate, useParams } from "react-router-dom";
+import { deletePost, getPostDetails } from "../actions/feed";
 import { CommentsType } from "../types/types";
+import Cookies from "universal-cookie";
 
 export default function ViewPost() {
+  const navigate = useNavigate();
   const [info, setInfo] = useState<any>();
   const params = useParams();
   const { postid }: any = params;
-  // console.log(info);
+  const cookie = new Cookies();
+  const current_user = cookie.get("user_id");
+  const post_owner = info?.data.attributes.user_id.toString();
+  console.log(info);
   const comments: CommentsType[] = info?.data.attributes.comments;
   const [comment, setComment] = useState("");
   const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -21,6 +26,11 @@ export default function ViewPost() {
   useEffect(() => {
     getPostDetails(postid, setInfo);
   }, [postid]);
+
+  const handleDelete = () => {
+    deletePost(info?.data.attributes.id);
+    navigate("/");
+  };
   return (
     <div>
       <Navbar />
@@ -48,16 +58,18 @@ export default function ViewPost() {
                 <p>Share</p>
               </button>
             </div>
-            <div className="flex gap-4">
-              <button className="flex gap-1">
-                <i className="icon ri-pencil-fill"></i>
-                <p>Edit</p>
-              </button>
-              <button className="flex gap-1">
-                <i className="icon ri-delete-bin-6-line"></i>
-                <p>Delete</p>
-              </button>
-            </div>
+            {current_user === post_owner && (
+              <div className="flex gap-4">
+                <button className="flex gap-1">
+                  <i className="icon ri-pencil-fill"></i>
+                  <p>Edit</p>
+                </button>
+                <button className="flex gap-1" onClick={handleDelete}>
+                  <i className="icon ri-delete-bin-6-line"></i>
+                  <p>Delete</p>
+                </button>
+              </div>
+            )}
           </div>
           <Textarea
             height="h-[160px]"

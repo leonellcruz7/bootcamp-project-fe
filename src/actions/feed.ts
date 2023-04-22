@@ -19,3 +19,12 @@ export const getPostDetails = async (id: string, setInfo: any) => {
     console.log(err);
   }
 };
+
+export const deletePost = async (postid: string) => {
+  try {
+    const response = await api.delete(`api/v1/posts/${postid}`);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -4,16 +4,24 @@ import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 import UserInformation from "../UserInformation";
 import PostContent from "../PostContent";
 import { PostTypes } from "../../types/types";
-import { getPostDetails } from "../../actions/feed";
+import { deletePost, getPostDetails } from "../../actions/feed";
+import Cookies from "universal-cookie";
 
 const PostCard: FC<PostTypes> = ({ post }) => {
   const [info, setInfo] = useState<any>();
-  // console.log("post", post);
+  // console.log("post", post.attributes.user_id);
   // console.log("info", info);
+  const cookie = new Cookies();
+  const current_user = cookie.get("user_id");
 
+  const post_owner = post.attributes.user_id.toString();
   useEffect(() => {
     getPostDetails(post.id, setInfo);
   }, [post.id]);
+
+  const handleDelete = () => {
+    deletePost(post.id);
+  };
 
   const navigate = useNavigate();
   return (
@@ -35,12 +43,16 @@ const PostCard: FC<PostTypes> = ({ post }) => {
           <button>
             <i className="icon ri-share-forward-line"></i>
           </button>
-          <button onClick={() => handleNavigate(navigate, "/edit-post")}>
-            <i className="icon ri-pencil-fill"></i>
-          </button>
-          <button>
-            <i className="icon ri-delete-bin-6-line"></i>
-          </button>
+          {post_owner === current_user && (
+            <>
+              <button onClick={() => handleNavigate(navigate, "/edit-post")}>
+                <i className="icon ri-pencil-fill"></i>
+              </button>
+              <button onClick={handleDelete}>
+                <i className="icon ri-delete-bin-6-line"></i>
+              </button>
+            </>
+          )}
         </div>
       </div>
       <div className="content-wrapper">
