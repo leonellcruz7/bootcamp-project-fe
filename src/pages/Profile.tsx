@@ -18,7 +18,7 @@ export default function Profile() {
   useEffect(() => {
     getPosts({ setPosts });
     getProfile(username, setProfile);
-  }, [update]);
+  }, [update, username]);
   return (
     <div>
       <Navbar />
