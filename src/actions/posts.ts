@@ -44,3 +44,18 @@ export const createPost = async (
     console.log(err);
   }
 };
+
+export const updatePost = async (
+  postid: string,
+  post: any,
+  navigate: (path: string) => void
+) => {
+  try {
+    const response = await api.put(`/api/v1/posts/${postid}`, post);
+    console.log(response);
+    Swal.fire("Good Job!", "You have created a post!", "success");
+    navigate(`/view-post/${postid}`);
+  } catch (err) {
+    console.log(err);
+  }
+};

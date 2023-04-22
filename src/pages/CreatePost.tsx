@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/assets/Navbar";
 import CreatePostCard from "../components/CreatePostCard";
-import { createPost } from "../actions/feed";
+import { createPost } from "../actions/posts";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";

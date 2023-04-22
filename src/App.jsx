@@ -28,7 +28,7 @@ function App() {
             element={<ProtectedRoute element={<CreatePost />} />}
           />
           <Route
-            path="/edit-post"
+            path="/edit-post/:postid"
             element={<ProtectedRoute element={<EditPost />} />}
           />
           <Route

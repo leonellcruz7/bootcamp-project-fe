@@ -4,7 +4,7 @@ import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 import UserInformation from "../UserInformation";
 import PostContent from "../PostContent";
 import { PostTypes } from "../../types/types";
-import { deletePost, getPostDetails } from "../../actions/feed";
+import { deletePost, getPostDetails } from "../../actions/posts";
 import Cookies from "universal-cookie";
 
 const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
@@ -48,7 +48,11 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
           </button>
           {post_owner === current_user && (
             <>
-              <button onClick={() => handleNavigate(navigate, "/edit-post")}>
+              <button
+                onClick={() =>
+                  handleNavigate(navigate, `/edit-post/${post.id}`)
+                }
+              >
                 <i className="icon ri-pencil-fill"></i>
               </button>
               <button onClick={handleDelete}>

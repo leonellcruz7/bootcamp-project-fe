@@ -1,8 +1,22 @@
 import React from "react";
 import CreatePostCard from "../components/CreatePostCard";
 import Navbar from "../components/assets/Navbar";
+import { updatePost } from "../actions/posts";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export default function EditPost() {
+  const params = useParams();
+  const navigate = useNavigate();
+  const { post } = useSelector((state: any) => state.createPost);
+  const { postid } = params;
+  const handleUpdate = () => {
+    !post.title || !post.body || post.tags.length <= 0
+      ? Swal.fire("Error!", "Please complete the form!", "error")
+      : updatePost(postid!, post, navigate);
+  };
+
   return (
     <div>
       <Navbar />
@@ -23,7 +37,9 @@ export default function EditPost() {
         </div>
         <div className="flex p-4 justify-end gap-2">
           <button className="button secondary-button fit">Save as Draft</button>
-          <button className="button primary-button fit">Update</button>
+          <button className="button primary-button fit" onClick={handleUpdate}>
+            Update
+          </button>
         </div>
       </div>
     </div>

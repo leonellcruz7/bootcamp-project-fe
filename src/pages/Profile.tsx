@@ -3,7 +3,7 @@ import Navbar from "../components/assets/Navbar";
 import ProfileCard from "../components/ProfileCard";
 import PostCard from "../components/feed/PostCard";
 import { useParams } from "react-router-dom";
-import { getPosts } from "../actions/feed";
+import { getPosts } from "../actions/posts";
 import { getProfile } from "../actions/profile";
 import empty from "../assets/images/empty.svg";
 
