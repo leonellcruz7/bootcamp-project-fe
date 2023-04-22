@@ -5,11 +5,16 @@ import Tags from "./Tags";
 import { useDispatch } from "react-redux";
 import { setPost } from "../redux/posts/create-post";
 import Cookies from "universal-cookie";
+import { useParams } from "react-router-dom";
+import { getPostDetails } from "../actions/posts";
 
 export default function CreatePostCard() {
   const dispatch = useDispatch();
+  const [info, setInfo] = useState<any>();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const params = useParams();
+  const { postid } = params;
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const cookie = new Cookies();
   const current_user = cookie.get("user_id");
@@ -35,6 +40,18 @@ export default function CreatePostCard() {
   };
 
   useEffect(() => {
+    if (postid) getPostDetails(postid, setInfo);
+  }, [postid]);
+
+  const data = info?.data?.attributes;
+  useEffect(() => {
+    if (postid) {
+      setSelectedTags(data?.tags);
+      setTitle(data?.title);
+      setBody(data?.body);
+    }
+  }, [data, postid]);
+  useEffect(() => {
     dispatch(
       setPost({
         title: title,
@@ -49,7 +66,7 @@ export default function CreatePostCard() {
       <div className="form-wrapper">
         <Input
           value={title}
-          placeholder=""
+          placeholder={data?.title}
           label="Title"
           error="test"
           type="text"
@@ -59,7 +76,7 @@ export default function CreatePostCard() {
         <Textarea
           height="h-[320px]"
           value={body}
-          placeholder=""
+          placeholder={data?.body}
           label="Body"
           error="test"
           onChange={handleBody}
@@ -73,7 +90,7 @@ export default function CreatePostCard() {
                 <Tags
                   key={index}
                   label={item}
-                  active={selectedTags.includes(item)}
+                  active={selectedTags?.includes(item)}
                   onClick={handleTags.bind(null, item)}
                 />
               );

@@ -5,7 +5,7 @@ import PostContent from "../components/PostContent";
 import Textarea from "../components/assets/Textarea";
 import Comment from "../components/Comment";
 import { useNavigate, useParams } from "react-router-dom";
-import { deletePost, getPostDetails } from "../actions/feed";
+import { deletePost, getPostDetails } from "../actions/posts";
 import { CommentsType } from "../types/types";
 import Cookies from "universal-cookie";
 

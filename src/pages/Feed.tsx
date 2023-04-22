@@ -6,7 +6,7 @@ import TagsCard from "../components/feed/TagsCard";
 import Options from "../components/feed/Options";
 import { useNavigate } from "../../node_modules/react-router-dom/dist/index";
 import { handleNavigate } from "../actions/actions";
-import { getPosts } from "../actions/feed";
+import { getPosts } from "../actions/posts";
 
 export default function Feed() {
   const navigate = useNavigate();
