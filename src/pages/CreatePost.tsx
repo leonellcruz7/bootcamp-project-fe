@@ -1,8 +1,20 @@
 import React from "react";
 import Navbar from "../components/assets/Navbar";
 import CreatePostCard from "../components/CreatePostCard";
+import { createPost } from "../actions/feed";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function CreatePost() {
+  const navigate = useNavigate();
+  const { post } = useSelector((state: any) => state.createPost);
+  const handleCreate = () => {
+    !post.title || !post.body || post.tags.length <= 0
+      ? Swal.fire("Error!", "Please complete the form!", "error")
+      : createPost(post, navigate);
+  };
+
   return (
     <div>
       <Navbar />
@@ -23,7 +35,9 @@ export default function CreatePost() {
         </div>
         <div className="flex p-4 justify-end gap-2">
           <button className="button secondary-button fit">Save as Draft</button>
-          <button className="button primary-button fit">Post</button>
+          <button className="button primary-button fit" onClick={handleCreate}>
+            Post
+          </button>
         </div>
       </div>
     </div>

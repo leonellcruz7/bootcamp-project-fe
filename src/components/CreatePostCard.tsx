@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "./assets/Input";
 import Textarea from "./assets/Textarea";
 import Tags from "./Tags";
+import { useDispatch } from "react-redux";
+import { setPost } from "../redux/posts/create-post";
+import Cookies from "universal-cookie";
 
 export default function CreatePostCard() {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const cookie = new Cookies();
+  const current_user = cookie.get("user_id");
   const tags = [
     "@react",
     "@ruby",
     "@tech-stack",
     "@case-studies",
-    "@bootcamo",
+    "@bootcamp",
     "@design-talks",
   ];
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +33,17 @@ export default function CreatePostCard() {
       ? setSelectedTags((prev) => [...prev, item])
       : setSelectedTags((prev) => prev.filter((tag) => tag !== item));
   };
+
+  useEffect(() => {
+    dispatch(
+      setPost({
+        title: title,
+        body: body,
+        tags: selectedTags,
+        user_id: current_user,
+      })
+    );
+  }, [title, body, selectedTags, current_user, dispatch]);
   return (
     <div className="create-card">
       <div className="form-wrapper">

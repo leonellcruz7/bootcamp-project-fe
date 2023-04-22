@@ -86,3 +86,14 @@ export interface CommentsType {
 export interface CommentDetails {
   details: CommentsType;
 }
+
+export interface CreatePost {
+  title: string;
+  body: string;
+  user_id: string;
+  tags: string[];
+}
+
+export interface Post {
+  post: CreatePost;
+}
