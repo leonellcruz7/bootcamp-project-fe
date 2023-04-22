@@ -38,7 +38,9 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
           </button>
         </div>
         <div className="control-wrapper">
-          <button>
+          <button
+            onClick={() => handleNavigate(navigate, `/view-post/${post.id}`)}
+          >
             <i className="icon ri-chat-3-line"></i>
           </button>
           <button>
