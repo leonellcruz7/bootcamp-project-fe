@@ -45,7 +45,7 @@ export default function Feed() {
             <p className="text-sm font-medium">
               Recent posts {tag && `from ${tag}`}
             </p>
-            <div className="flex flex-col gap-3 mt-3">
+            <div className="flex flex-col gap-3 mt-3 min-w-[560px]">
               {posts
                 .filter((item) => {
                   if (tag) {
