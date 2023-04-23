@@ -20,7 +20,7 @@ const UserInformation: FC<UserInfoTypes> = ({ info }) => {
         </div>
         <p className="text-xs text-neutral400">
           <i className="ri-time-line mr-1"></i>
-          <Moment fromNow>{info?.data.attributes.created_at}</Moment>
+          <Moment fromNow>{info?.data.attributes.updated_at}</Moment>
         </p>
       </div>
       <div className="flex gap-1 flex-wrap">
