@@ -5,7 +5,13 @@ import PostContent from "../components/PostContent";
 import Textarea from "../components/assets/Textarea";
 import Comment from "../components/Comment";
 import { useNavigate, useParams } from "react-router-dom";
-import { deletePost, downvote, getPostDetails, upvote } from "../actions/posts";
+import {
+  deletePost,
+  downvote,
+  getPostDetails,
+  sharePost,
+  upvote,
+} from "../actions/posts";
 import { CommentsType } from "../types/types";
 import Cookies from "universal-cookie";
 import { addComment } from "../actions/comments";
@@ -23,7 +29,7 @@ export default function ViewPost() {
   const current_user = cookie.get("user_id");
   const username = cookie.get("username");
   const post_owner = info?.data.attributes.user_id.toString();
-  // console.log(info);
+  console.log(info);
   const comments: CommentsType[] = info?.data.attributes.comments;
   const [comment, setComment] = useState("");
   const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -67,6 +73,17 @@ export default function ViewPost() {
       setUpdate((prev) => !prev);
     }
   };
+
+  const handleShare = () => {
+    const body = {
+      title: info?.data.attributes.title,
+      body: info?.data.attributes.body,
+      tags: info?.data.attributes.tags,
+      user_id: current_user,
+    };
+    setUpdate((prev: boolean) => !prev);
+    sharePost(body, navigate);
+  };
   return (
     <div>
       <Navbar />
@@ -99,7 +116,7 @@ export default function ViewPost() {
                 <i className="icon ri-chat-3-line"></i>
                 <p>{comments?.length} Comments</p>
               </button>
-              <button className="flex gap-1">
+              <button className="flex gap-1" onClick={handleShare}>
                 <i className="icon ri-share-forward-line"></i>
                 <p>Share</p>
               </button>
