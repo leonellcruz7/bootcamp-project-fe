@@ -51,4 +51,7 @@
   &.fit {
     @apply min-w-[96px] w-fit;
   }
+  &.small {
+    @apply py-1 px-3;
+  }
 }

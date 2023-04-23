@@ -4,6 +4,7 @@ import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 import UserInformation from "../UserInformation";
 import PostContent from "../PostContent";
 import { PostTypes } from "../../types/types";
+import { motion } from "framer-motion";
 import {
   deletePost,
   downvote,
@@ -12,9 +13,11 @@ import {
   upvote,
 } from "../../actions/posts";
 import Cookies from "universal-cookie";
+import { deleteButtonVariants } from "../../framer-motion/variants";
 
 const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
   const [info, setInfo] = useState<any>();
+  const [buttonAnimate, setButtonAnimate] = useState("close");
   // console.log("post", post.attributes);
   // console.log("info", info?.data.attributes.votes);
   const [infoUpdate, setInfoUpdate] = useState(false);
@@ -29,6 +32,12 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
   const handleDelete = () => {
     deletePost(post.id);
     setUpdate(() => !update);
+  };
+
+  const handleDeleteAnimate = () => {
+    buttonAnimate === "close"
+      ? setButtonAnimate("open")
+      : setButtonAnimate("close");
   };
 
   const handleUpvote = () => {
@@ -97,9 +106,30 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
               >
                 <i className="icon ri-pencil-fill"></i>
               </button>
-              <button onClick={handleDelete}>
-                <i className="icon ri-delete-bin-6-line"></i>
-              </button>
+              <div className="relative">
+                <button onClick={handleDeleteAnimate}>
+                  <i className="icon ri-delete-bin-6-line"></i>
+                </button>
+                <motion.div
+                  className="absolute top-0 right-[-10px] flex gap-1"
+                  variants={deleteButtonVariants}
+                  animate={buttonAnimate}
+                  initial="close"
+                >
+                  <button
+                    onClick={handleDeleteAnimate}
+                    className="button primary-button small"
+                  >
+                    no
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="button primary-button danger small"
+                  >
+                    yes
+                  </button>
+                </motion.div>
+              </div>
             </>
           )}
         </div>
