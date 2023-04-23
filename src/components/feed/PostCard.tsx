@@ -4,24 +4,44 @@ import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 import UserInformation from "../UserInformation";
 import PostContent from "../PostContent";
 import { PostTypes } from "../../types/types";
-import { deletePost, getPostDetails } from "../../actions/posts";
+import {
+  deletePost,
+  downvote,
+  getPostDetails,
+  upvote,
+} from "../../actions/posts";
 import Cookies from "universal-cookie";
 
 const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
   const [info, setInfo] = useState<any>();
-  // console.log("post", post.attributes.user_id);
-  // console.log("info", info);
+  // console.log("post", post.attributes);
+  // console.log("info", info?.data.attributes.votes);
+  const [infoUpdate, setInfoUpdate] = useState(false);
   const cookie = new Cookies();
   const current_user = cookie.get("user_id");
-
+  const votes = info?.data.attributes.votes;
   const post_owner = post.attributes.user_id.toString();
   useEffect(() => {
     getPostDetails(post.id, setInfo);
-  }, [post.id]);
+  }, [post.id, infoUpdate]);
 
   const handleDelete = () => {
     deletePost(post.id);
-    setUpdate(!update);
+    setUpdate(() => !update);
+  };
+
+  const handleUpvote = () => {
+    if (!votes?.includes(current_user)) {
+      upvote(current_user, post.id);
+      setInfoUpdate((prev) => !prev);
+    }
+  };
+
+  const handleDownvote = () => {
+    if (votes?.includes(current_user)) {
+      downvote(current_user, post.id);
+      setInfoUpdate((prev) => !prev);
+    }
   };
 
   const navigate = useNavigate();
@@ -29,11 +49,21 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
     <div className="postcard-container">
       <div className="actions-container">
         <div className="vote-wrapper">
-          <button>
-            <i className="icon ri-arrow-up-line"></i>
+          <button
+            onClick={handleUpvote}
+            disabled={votes?.includes(current_user)}
+          >
+            <i
+              className={`icon ri-arrow-up-line ${
+                votes?.includes(current_user) && "active"
+              }`}
+            ></i>
           </button>
-          <p className="text-neutral800">{post.attributes.votes}</p>
-          <button>
+          <p className="text-neutral800">{votes?.length}</p>
+          <button
+            onClick={handleDownvote}
+            disabled={!votes?.includes(current_user)}
+          >
             <i className="icon ri-arrow-down-line"></i>
           </button>
         </div>

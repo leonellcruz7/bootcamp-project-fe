@@ -72,3 +72,27 @@ export const searchPost = async (post: string, setPosts: any) => {
     console.log(err);
   }
 };
+
+export const upvote = async (current_user: string, postid: string) => {
+  const body = {
+    user_id: current_user,
+  };
+  try {
+    const response = await api.post(`/api/v1/posts/upvote/${postid}`, body);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const downvote = async (current_user: string, postid: string) => {
+  const body = {
+    user_id: current_user,
+  };
+  try {
+    const response = await api.post(`/api/v1/posts/downvote/${postid}`, body);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+};

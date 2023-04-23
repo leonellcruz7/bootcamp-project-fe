@@ -5,7 +5,7 @@ import PostContent from "../components/PostContent";
 import Textarea from "../components/assets/Textarea";
 import Comment from "../components/Comment";
 import { useNavigate, useParams } from "react-router-dom";
-import { deletePost, getPostDetails } from "../actions/posts";
+import { deletePost, downvote, getPostDetails, upvote } from "../actions/posts";
 import { CommentsType } from "../types/types";
 import Cookies from "universal-cookie";
 import { addComment } from "../actions/comments";
@@ -27,7 +27,7 @@ export default function ViewPost() {
   const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
   };
-
+  const votes = info?.data.attributes.votes;
   const handleDelete = () => {
     deletePost(info?.data.attributes.id);
     navigate("/");
@@ -50,6 +50,20 @@ export default function ViewPost() {
   useEffect(() => {
     getPostDetails(postid, setInfo);
   }, [postid, update]);
+
+  const handleUpvote = () => {
+    if (!votes?.includes(current_user)) {
+      upvote(current_user, postid);
+      setUpdate((prev) => !prev);
+    }
+  };
+
+  const handleDownvote = () => {
+    if (votes?.includes(current_user)) {
+      downvote(current_user, postid);
+      setUpdate((prev) => !prev);
+    }
+  };
   return (
     <div>
       <Navbar />
@@ -60,11 +74,21 @@ export default function ViewPost() {
           <div className="my-4 flex justify-between">
             <div className="flex gap-4">
               <div className="vote-wrapper horizontal">
-                <button>
-                  <i className="icon ri-arrow-up-line"></i>
+                <button
+                  onClick={handleUpvote}
+                  disabled={votes?.includes(current_user)}
+                >
+                  <i
+                    className={`icon ri-arrow-up-line ${
+                      votes?.includes(current_user) && "active"
+                    }`}
+                  ></i>
                 </button>
-                <p className="text-neutral800">{info?.data.attributes.votes}</p>
-                <button>
+                <p className="text-neutral800">{votes?.length}</p>
+                <button
+                  onClick={handleDownvote}
+                  disabled={!votes?.includes(current_user)}
+                >
                   <i className="icon ri-arrow-down-line"></i>
                 </button>
               </div>
