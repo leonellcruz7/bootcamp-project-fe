@@ -83,6 +83,12 @@ export interface CommentsType {
   votes: number;
 }
 
+export interface AddCommentTypes {
+  message: string;
+  post_id: string;
+  username: string;
+}
+
 export interface CommentDetails {
   details: CommentsType;
 }

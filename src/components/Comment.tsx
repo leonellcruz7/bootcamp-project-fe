@@ -3,7 +3,7 @@ import { CommentDetails } from "../types/types";
 import Moment from "react-moment";
 
 const Comment: FC<CommentDetails> = ({ details }) => {
-  console.log(details);
+  // console.log(details);
 
   return (
     <div className="flex gap-2 overflow-hidden">
@@ -34,7 +34,7 @@ const Comment: FC<CommentDetails> = ({ details }) => {
           <div>
             <button className="flex items-center gap-1">
               <i className="icon ri-chat-3-line"></i>
-              <p>2 Replies</p>
+              <p>0 Replies</p>
             </button>
           </div>
         </div>

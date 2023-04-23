@@ -13,7 +13,7 @@ export default function Profile() {
   const [posts, setPosts] = useState<any[]>([]);
   const [update, setUpdate] = useState(false);
   const { username } = params;
-  console.log(profile);
+  // console.log(profile);
 
   useEffect(() => {
     getPosts({ setPosts });

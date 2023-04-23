@@ -8,29 +8,47 @@ import { useNavigate, useParams } from "react-router-dom";
 import { deletePost, getPostDetails } from "../actions/posts";
 import { CommentsType } from "../types/types";
 import Cookies from "universal-cookie";
+import { addComment } from "../actions/comments";
 
 export default function ViewPost() {
   const navigate = useNavigate();
   const [info, setInfo] = useState<any>();
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [update, setUpdate] = useState(false);
   const params = useParams();
   const { postid }: any = params;
   const cookie = new Cookies();
   const current_user = cookie.get("user_id");
+  const username = cookie.get("username");
   const post_owner = info?.data.attributes.user_id.toString();
-  console.log(info);
+  // console.log(info);
   const comments: CommentsType[] = info?.data.attributes.comments;
   const [comment, setComment] = useState("");
   const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
   };
-  useEffect(() => {
-    getPostDetails(postid, setInfo);
-  }, [postid]);
 
   const handleDelete = () => {
     deletePost(info?.data.attributes.id);
     navigate("/");
   };
+
+  useEffect(() => {
+    comment ? setIsDisabled(false) : setIsDisabled(true);
+  }, [comment]);
+
+  const handleAddComment = () => {
+    const body = {
+      post_id: postid,
+      message: comment,
+      username: username,
+    };
+    addComment(body);
+    setUpdate(!update);
+  };
+  useEffect(() => {
+    getPostDetails(postid, setInfo);
+  }, [postid, update]);
   return (
     <div>
       <Navbar />
@@ -81,13 +99,21 @@ export default function ViewPost() {
             showError={false}
           />
           <div className="flex justify-end mt-4">
-            <button className="button primary-button fit">Comment</button>
+            <button
+              className="button primary-button fit"
+              onClick={handleAddComment}
+              disabled={isDisabled}
+            >
+              Comment
+            </button>
           </div>
           <div className="divider horizontal"></div>
           <div className="flex flex-col gap-6">
-            {comments?.map((item, index) => {
-              return <Comment details={item} key={index} />;
-            })}
+            {comments
+              ?.map((item, index) => {
+                return <Comment details={item} key={index} />;
+              })
+              .reverse()}
           </div>
         </div>
       </div>
