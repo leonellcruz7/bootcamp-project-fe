@@ -4,6 +4,7 @@ import { handleNavigate } from "../../actions/actions";
 import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 import { logout } from "../../actions/authentication";
 import Cookies from "universal-cookie";
+import Avatar from "boring-avatars";
 
 export default function Navbar() {
   const menuRef = useRef(null);
@@ -45,7 +46,21 @@ export default function Navbar() {
                 } py-1 px-2 rounded-[4px]`}
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 bg-neutral200 rounded-[50%]"></div>
+                  <div className="w-10 h-10 bg-neutral200 rounded-[50%]">
+                    {" "}
+                    <Avatar
+                      size={"auto"}
+                      name={current_username}
+                      variant="bauhaus"
+                      colors={[
+                        "#92A1C6",
+                        "#146A7C",
+                        "#F0AB3D",
+                        "#C271B4",
+                        "#C20D90",
+                      ]}
+                    />
+                  </div>
                   <p className="font-500 text-sm truncate">
                     {current_username}
                   </p>

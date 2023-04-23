@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import Moment from "react-moment";
 import { UserInfoTypes } from "../types/types";
+import Avatar from "boring-avatars";
 
 const UserInformation: FC<UserInfoTypes> = ({ info }) => {
   // console.log("info", info);
@@ -10,7 +11,14 @@ const UserInformation: FC<UserInfoTypes> = ({ info }) => {
     <div className="w-full">
       <div className="user-information">
         <div className="flex gap-2 items-center cursor-pointer">
-          <div className="w-5 h-5 rounded-[50%] bg-neutral500"></div>
+          <div className="w-5 h-5 rounded-[50%] overflow-hidden">
+            <Avatar
+              size={"auto"}
+              name={username}
+              variant="bauhaus"
+              colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+            />
+          </div>
           <a
             href={`/profile/${username}`}
             className="text-sm text-neutral800 no-underline"
