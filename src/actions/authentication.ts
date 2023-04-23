@@ -21,7 +21,7 @@ export const signup = async ({
   try {
     const response = await api.post("/api/v1/users/", body);
     console.log(response);
-    Swal.fire("Good Job!", "Sign in successful!", "success");
+    Swal.fire("Good Job!", "Sign up successful!", "success");
 
     navigate("/login");
   } catch (err: any) {

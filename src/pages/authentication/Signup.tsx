@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import Input from "../../components/assets/Input";
 import { signup } from "../../actions/authentication";
 import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
+import Loader from "../../components/assets/Loader";
+import Swal from "sweetalert2";
 export default function Signup() {
   const navigate = useNavigate();
+  const [btnLabel, setBtnLabel] = useState<any>("Sign up");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +21,10 @@ export default function Signup() {
     setPassword(e.target.value);
   };
   const handleSignUp = () => {
-    signup({ email, username, password, navigate });
+    if (email && username && password) {
+      setBtnLabel(<Loader />);
+      signup({ email, username, password, navigate });
+    } else Swal.fire("Error!", "Please complete the form!", "error");
   };
   return (
     <div className="flex">
@@ -73,7 +79,7 @@ export default function Signup() {
               className="button primary-button mt-10"
               onClick={handleSignUp}
             >
-              Sign up
+              {btnLabel}
             </button>
           </div>
         </div>

@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import CreatePostCard from "../components/CreatePostCard";
 import Navbar from "../components/assets/Navbar";
 import { updatePost } from "../actions/posts";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Loader from "../components/assets/Loader";
 
 export default function EditPost() {
   const params = useParams();
+  const [btnLabel, setBtnLabel] = useState<any>("Update");
   const navigate = useNavigate();
   const { post } = useSelector((state: any) => state.createPost);
   const { postid } = params;
   const handleUpdate = () => {
-    !post.title || !post.body || post.tags.length <= 0
-      ? Swal.fire("Error!", "Please complete the form!", "error")
-      : updatePost(postid!, post, navigate);
+    if (!post.title || !post.body || post.tags.length <= 0)
+      Swal.fire("Error!", "Please complete the form!", "error");
+    else {
+      setBtnLabel(<Loader />);
+      updatePost(postid!, post, navigate);
+    }
   };
 
   return (
@@ -38,7 +43,7 @@ export default function EditPost() {
         <div className="flex p-4 justify-end gap-2">
           <button className="button secondary-button fit">Save as Draft</button>
           <button className="button primary-button fit" onClick={handleUpdate}>
-            Update
+            {btnLabel}
           </button>
         </div>
       </div>

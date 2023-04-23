@@ -8,6 +8,7 @@ import {
   deletePost,
   downvote,
   getPostDetails,
+  sharePost,
   upvote,
 } from "../../actions/posts";
 import Cookies from "universal-cookie";
@@ -44,6 +45,17 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
     }
   };
 
+  const handleShare = () => {
+    const body = {
+      title: post.attributes.title,
+      body: post.attributes.body,
+      tags: post.attributes.tags,
+      user_id: current_user,
+    };
+    setUpdate((prev: boolean) => !prev);
+    sharePost(body, navigate);
+  };
+
   const navigate = useNavigate();
   return (
     <div className="postcard-container">
@@ -73,7 +85,7 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
           >
             <i className="icon ri-chat-3-line"></i>
           </button>
-          <button>
+          <button onClick={handleShare}>
             <i className="icon ri-share-forward-line"></i>
           </button>
           {post_owner === current_user && (

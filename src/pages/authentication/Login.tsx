@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Input from "../../components/assets/Input";
 import { login } from "../../actions/authentication";
+import Loader from "../../components/assets/Loader";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [btnLabel, setBtnLabel] = useState<any>("Login");
   const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
@@ -12,7 +15,12 @@ export default function Login() {
     setPassword(e.target.value);
   };
   const handleLogin = () => {
-    login({ username, password });
+    if (username && password) {
+      setBtnLabel(<Loader />);
+      login({ username, password });
+    } else {
+      Swal.fire("Error!", "Please complete the form!", "error");
+    }
   };
   return (
     <div className="flex">
@@ -58,7 +66,7 @@ export default function Login() {
               className="button primary-button mt-10"
               onClick={handleLogin}
             >
-              Login
+              {btnLabel}
             </button>
           </div>
         </div>

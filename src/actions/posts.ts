@@ -44,6 +44,19 @@ export const createPost = async (
     console.log(err);
   }
 };
+export const sharePost = async (
+  body: any,
+  navigate: (path: string) => void
+) => {
+  try {
+    const response = await api.post("/api/v1/posts", body);
+    console.log(response);
+    Swal.fire("Good Job!", "You have shared a post!", "success");
+    navigate("/");
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const updatePost = async (
   postid: string,

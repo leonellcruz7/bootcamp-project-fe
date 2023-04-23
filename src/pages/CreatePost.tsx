@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/assets/Navbar";
 import CreatePostCard from "../components/CreatePostCard";
 import { createPost } from "../actions/posts";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Loader from "../components/assets/Loader";
 
 export default function CreatePost() {
   const navigate = useNavigate();
+  const [btnLabel, setBtnLabel] = useState<any>("Post");
   const { post } = useSelector((state: any) => state.createPost);
   const handleCreate = () => {
-    !post.title || !post.body || post.tags.length <= 0
-      ? Swal.fire("Error!", "Please complete the form!", "error")
-      : createPost(post, navigate);
+    if (!post.title || !post.body || post.tags.length <= 0)
+      Swal.fire("Error!", "Please complete the form!", "error");
+    else {
+      setBtnLabel(<Loader />);
+      createPost(post, navigate);
+    }
   };
 
   return (
@@ -36,7 +41,7 @@ export default function CreatePost() {
         <div className="flex p-4 justify-end gap-2">
           <button className="button secondary-button fit">Save as Draft</button>
           <button className="button primary-button fit" onClick={handleCreate}>
-            Post
+            {btnLabel}
           </button>
         </div>
       </div>

@@ -9,9 +9,11 @@ import { deletePost, downvote, getPostDetails, upvote } from "../actions/posts";
 import { CommentsType } from "../types/types";
 import Cookies from "universal-cookie";
 import { addComment } from "../actions/comments";
+import Loader from "../components/assets/Loader";
 
 export default function ViewPost() {
   const navigate = useNavigate();
+  const [btnLabel, setBtnLabel] = useState<any>("Comment");
   const [info, setInfo] = useState<any>();
   const [isDisabled, setIsDisabled] = useState(true);
   const [update, setUpdate] = useState(false);
@@ -43,7 +45,8 @@ export default function ViewPost() {
       message: comment,
       username: username,
     };
-    addComment(body);
+    setBtnLabel(<Loader />);
+    addComment(body, setBtnLabel);
     setUpdate(!update);
     setComment("");
   };
@@ -129,7 +132,7 @@ export default function ViewPost() {
               onClick={handleAddComment}
               disabled={isDisabled}
             >
-              Comment
+              {btnLabel}
             </button>
           </div>
           <div className="divider horizontal"></div>
