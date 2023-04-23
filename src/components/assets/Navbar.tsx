@@ -8,6 +8,7 @@ import Avatar from "boring-avatars";
 
 export default function Navbar() {
   const menuRef = useRef(null);
+  const searchRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const [showMenu, setshowMenu] = useState(false);
   const cookie = new Cookies();
@@ -15,6 +16,13 @@ export default function Navbar() {
   const current_username = cookie.get("username");
   const handleShowMenu = () => {
     showMenu ? setshowMenu(false) : setshowMenu(true);
+  };
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const search = searchRef.current!.value;
+    navigate(`/search?post=${search}`);
+    searchRef.current!.value = "";
   };
 
   return (
@@ -30,7 +38,9 @@ export default function Navbar() {
           <p className="logo-text">Blogs</p>
         </div>
         <div className="search-wrapper">
-          <input type="text" className="input-field" />
+          <form onSubmit={handleSearch}>
+            <input ref={searchRef} type="text" className="input-field" />
+          </form>
         </div>
         <div className="flex items-center gap-4">
           <button className="w-10 h-10 p-3 bg-neutral100 flex items-center justify-center rounded-[4px]">
