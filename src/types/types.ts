@@ -38,7 +38,7 @@ export interface PostAttributes {
   tags: string[];
   title: string;
   user_id: string;
-  votes: number;
+  votes: string[];
   created_at: Date;
   update_at: Date;
   id: string;

@@ -16,6 +16,9 @@
   &:hover {
     @apply text-[110%] text-neutral700;
   }
+  &.active {
+    @apply text-md text-primary500 font-bold;
+  }
 }
 .vote-wrapper {
   @apply text-neutral300 flex flex-col items-center gap-1;
