@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { getPosts } from "../actions/posts";
 import { getProfile } from "../actions/profile";
 import empty from "../assets/images/empty.svg";
+import Cookies from "universal-cookie";
 
 export default function Profile() {
   const params = useParams();
@@ -13,6 +14,8 @@ export default function Profile() {
   const [posts, setPosts] = useState<any[]>([]);
   const [update, setUpdate] = useState(false);
   const { username } = params;
+  const cookie = new Cookies();
+  const current_user = cookie.get("username");
   // console.log(profile);
 
   useEffect(() => {
@@ -25,7 +28,9 @@ export default function Profile() {
       <div className="body max-w-[920px]">
         <div className="flex gap-10">
           <div className="w-[560px]">
-            <p className="text-md font-bold">Your Posts</p>
+            <p className="text-md font-bold">
+              {current_user === username ? "Your Posts" : `${username}'s posts`}
+            </p>
             <div className="flex flex-col gap-3 mt-3">
               {posts
                 .filter((item) => {
