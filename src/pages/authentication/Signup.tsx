@@ -23,9 +23,7 @@ export default function Signup() {
   };
   return (
     <div className="flex">
-      <div className="w-full h-[100vh] overflow-hidden bg-red">
-        <img className="w-full" src={MG} alt="" />
-      </div>
+      <div className="w-full h-[100vh] overflow-hidden bg-mg bg-cover"></div>
       <div className="w-full h-[100vh] bg-white p-10">
         <div className="text-right">
           <p className="text-sm font-light">
