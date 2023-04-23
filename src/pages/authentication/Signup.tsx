@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Input from "../../components/assets/Input";
-import MG from "../../assets/images/MGBackground.svg";
 import { signup } from "../../actions/authentication";
 import { useNavigate } from "../../../node_modules/react-router-dom/dist/index";
 export default function Signup() {

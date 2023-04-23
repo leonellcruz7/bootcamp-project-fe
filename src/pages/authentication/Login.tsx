@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Input from "../../components/assets/Input";
-import MG from "../../assets/images/MGBackground.svg";
 import { login } from "../../actions/authentication";
 
 export default function Login() {
