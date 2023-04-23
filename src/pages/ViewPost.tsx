@@ -45,6 +45,7 @@ export default function ViewPost() {
     };
     addComment(body);
     setUpdate(!update);
+    setComment("");
   };
   useEffect(() => {
     getPostDetails(postid, setInfo);
@@ -109,11 +110,9 @@ export default function ViewPost() {
           </div>
           <div className="divider horizontal"></div>
           <div className="flex flex-col gap-6">
-            {comments
-              ?.map((item, index) => {
-                return <Comment details={item} key={index} />;
-              })
-              .reverse()}
+            {comments?.map((item, index) => {
+              return <Comment details={item} key={index} />;
+            })}
           </div>
         </div>
       </div>

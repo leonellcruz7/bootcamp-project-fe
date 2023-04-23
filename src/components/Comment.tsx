@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { CommentDetails } from "../types/types";
 import Moment from "react-moment";
+import Avatar from "boring-avatars";
 
 const Comment: FC<CommentDetails> = ({ details }) => {
   // console.log(details);
@@ -8,7 +9,15 @@ const Comment: FC<CommentDetails> = ({ details }) => {
   return (
     <div className="flex gap-2 overflow-hidden">
       <div className="w-fit">
-        <div className="w-6 h-6 rounded-[50%] bg-primary400"></div>
+        <div className="w-6 h-6 rounded-[50%] bg-primary400 overflow-hidden">
+          {" "}
+          <Avatar
+            size={"auto"}
+            name={details.username}
+            variant="bauhaus"
+            colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+          />
+        </div>
         <div className="divider vertical mx-auto"></div>
       </div>
       <div className="">
