@@ -111,7 +111,7 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
                   <i className="icon ri-delete-bin-6-line"></i>
                 </button>
                 <motion.div
-                  className="absolute top-0 right-[-10px] flex gap-1"
+                  className="absolute top-0 right-[-130px] flex gap-1"
                   variants={deleteButtonVariants}
                   animate={buttonAnimate}
                   initial="close"
