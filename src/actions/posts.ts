@@ -59,3 +59,16 @@ export const updatePost = async (
     console.log(err);
   }
 };
+
+export const searchPost = async (post: string, setPosts: any) => {
+  const body = {
+    title: post,
+  };
+  try {
+    const response = await api.post("/api/v1/posts/search", body);
+    setPosts(response.data.data);
+    // console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+};

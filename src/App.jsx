@@ -10,6 +10,7 @@ import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
 import ViewPost from "./pages/ViewPost";
 import Cookies from "universal-cookie";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/" element={<Feed />} />
+          <Route path="/search" element={<Search />} />
           <Route
             path="/profile/:username"
             element={<ProtectedRoute element={<Profile />} />}
