@@ -17,6 +17,7 @@ import Cookies from "universal-cookie";
 import { addComment } from "../actions/comments";
 import Loader from "../components/assets/Loader";
 import ViewPostLoading from "../components/LoadingCards/ViewPostLoading";
+import { handleNavigate } from "../actions/actions";
 
 export default function ViewPost() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function ViewPost() {
   const current_user = cookie.get("user_id");
   const username = cookie.get("username");
   const post_owner = info?.data.attributes.user_id.toString();
-  console.log(info);
+  // console.log(info);
   const comments: CommentsType[] = info?.data.attributes.comments;
   const [comment, setComment] = useState("");
   const handleComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -126,7 +127,12 @@ export default function ViewPost() {
               </div>
               {current_user === post_owner && (
                 <div className="flex gap-4">
-                  <button className="flex gap-1">
+                  <button
+                    className="flex gap-1"
+                    onClick={() =>
+                      handleNavigate(navigate, `/edit-post/${postid}`)
+                    }
+                  >
                     <i className="icon ri-pencil-fill"></i>
                     <p>Edit</p>
                   </button>

@@ -10,7 +10,10 @@ const PostContent: FC<PostContentType> = ({ content }) => {
       </p>
       <div>
         <div className="overflow-y-scroll max-h-[190px] my-1 pr-5">
-          <p className="font-light text-sm mb-1 break-words">{content?.body}</p>
+          <p
+            className="ck ck-content font-light text-sm mb-1 break-words"
+            dangerouslySetInnerHTML={{ __html: content?.body }}
+          ></p>
         </div>
         <div className="image-holder">
           {/* <img

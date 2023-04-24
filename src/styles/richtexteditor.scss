@@ -1,0 +1,127 @@
+.ck-editor {
+  /* overflow: visible !important; */
+  min-height: 300px !important;
+}
+.ck-toolbar,
+.ck-list__item {
+  z-index: 99999999999999999999999 !important;
+  //   border-bottom: 1px solid #e6eaed !important ;
+  padding: 5px !important;
+  border: none !important;
+  //   margin: 10px !important;
+  background: none !important;
+
+  //   padding-right: 50px !important;
+  //   padding-bottom: 10px !important;
+}
+
+.ck-focused {
+  box-shadow: none !important;
+  /* border: 1px solid #0b88cb !important;
+    filter: drop-shadow(0px 2px 6px #27a4e8);
+    border-radius: 2px !important; */
+}
+
+.ck-button {
+  cursor: pointer !important;
+  opacity: 0.7 !important;
+}
+
+.ck-content:focus {
+  background: #fff !important;
+  border: 1px solid #d1d5db !important;
+  box-shadow: 0px 0px 0px 2px #e5e7eb !important;
+  background-color: #fff !important;
+}
+
+.ck-content {
+  height: 100% !important;
+  min-height: 250px !important;
+  outline: none !important;
+}
+.ck-editor__editable {
+  z-index: 10 !important;
+  background: #ecf1f3 !important;
+  border: none !important;
+  border-radius: 4px !important;
+}
+
+.ck-button__label {
+  color: #1d252d !important;
+}
+
+.ck-on {
+  border: 1px solid #444 !important;
+}
+
+.ck-content ol li {
+  list-style: lower-roman !important;
+  margin-left: 30px !important;
+}
+
+.ck-content ul li {
+  list-style: disc !important;
+  margin-left: 30px !important;
+}
+
+.ck ol li {
+  list-style: decimal !important;
+}
+.ck ol li ol li {
+  list-style: lower-latin !important;
+}
+.ck ol li ol li ol li {
+  list-style: lower-roman !important;
+}
+.ck ol li ol li ol li ol li {
+  list-style: upper-latin !important;
+}
+.ck ol li ol li ol li ol li ol li {
+  list-style: upper-roman !important;
+}
+
+.ck ul li {
+  list-style: disc !important;
+}
+.ck ul li ul li {
+  list-style: circle !important;
+}
+.ck ul li ul li ul li {
+  list-style: square !important;
+}
+.ck ul li ul li ul li ul li {
+  list-style: disc !important;
+}
+.ck ul li ul li ul li ul li ul li {
+  list-style: square !important;
+}
+
+.ck input[type="checkbox"] {
+  transform: translateX(-3px) translateY(-0.5px) !important;
+}
+
+.ck input[type="checkbox"]::before {
+  width: 12px !important;
+  height: 12px !important;
+  transform: translateX(3px) translateY(-6px) !important ;
+}
+.ck input[type="checkbox"]::marker {
+  list-style: none;
+}
+
+.ck table {
+  background-color: #fff !important;
+  border-radius: 0px !important;
+}
+.ck table thead {
+  font-weight: 700;
+  background-color: #f1f1f1 !important;
+}
+.ck table tbody {
+  font-weight: 400;
+  background-color: #fff !important;
+}
+.ck td {
+  background: #fff !important;
+  border: 1px solid #aeaeae !important;
+}

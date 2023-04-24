@@ -2,6 +2,7 @@
 @import "./components/assets/assets.scss";
 @import "./components/components.scss";
 @import "./pages/styles.scss";
+@import "./styles/richtexteditor.scss";
 
 * {
   margin: 0;
@@ -31,6 +32,10 @@ a {
   &.vertical {
     @apply h-full w-[1px] bg-neutral200 my-2;
   }
+}
+
+strong {
+  font-weight: 700;
 }
 
 ::-webkit-scrollbar {
