@@ -164,7 +164,9 @@ export default function ViewPost() {
             <div className="divider horizontal"></div>
             <div className="flex flex-col gap-6">
               {comments?.map((item, index) => {
-                return <Comment details={item} key={index} />;
+                return (
+                  <Comment setUpdate={setUpdate} details={item} key={index} />
+                );
               })}
             </div>
           </div>
