@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Input from "./assets/Input";
-import Textarea from "./assets/Textarea";
+// import Textarea from "./assets/Textarea";
 import Tags from "./Tags";
 import { useDispatch } from "react-redux";
 import { setPost } from "../redux/posts/create-post";
@@ -8,6 +8,7 @@ import Cookies from "universal-cookie";
 import { useParams } from "react-router-dom";
 import { getPostDetails } from "../actions/posts";
 import ViewPostLoading from "./LoadingCards/ViewPostLoading";
+import Ckeditor from "./Ckeditor";
 
 export default function CreatePostCard() {
   const dispatch = useDispatch();
@@ -31,9 +32,9 @@ export default function CreatePostCard() {
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
-  const handleBody = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setBody(e.target.value);
-  };
+  // const handleBody = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   setBody(e.target.value);
+  // };
 
   const handleTags = (item: string) => {
     !selectedTags.includes(item)
@@ -47,6 +48,8 @@ export default function CreatePostCard() {
   }, [postid]);
 
   const data = info?.data?.attributes;
+  console.log(data);
+
   useEffect(() => {
     if (postid) {
       setSelectedTags(data?.tags);
@@ -78,15 +81,7 @@ export default function CreatePostCard() {
               onChange={handleTitle}
               showError={false}
             />{" "}
-            <Textarea
-              height="h-[320px]"
-              value={body}
-              placeholder={data?.body}
-              label="Body"
-              error="test"
-              onChange={handleBody}
-              showError={false}
-            />
+            <Ckeditor body={data?.body} setBody={setBody} />
             <div>
               <p>Tags</p>
               <div className="tags-wrapper">
