@@ -7,16 +7,18 @@ import Options from "../components/feed/Options";
 import { useNavigate } from "../../node_modules/react-router-dom/dist/index";
 import { handleNavigate } from "../actions/actions";
 import { getPosts } from "../actions/posts";
+import PostCardLoading from "../components/LoadingCards/PostCardLoading";
 
 export default function Feed() {
   const navigate = useNavigate();
   const [tag, setTag] = useState("");
   const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [update, setUpdate] = useState(false);
   // console.log("posts", posts);
 
   useEffect(() => {
-    getPosts({ setPosts });
+    getPosts({ setPosts, setLoading });
   }, [update]);
   const terms = [
     "User Agreement",
@@ -46,25 +48,34 @@ export default function Feed() {
               Recent posts {tag && `from ${tag}`}
             </p>
             <div className="flex flex-col gap-3 mt-3 min-w-[560px]">
-              {posts
-                .filter((item) => {
-                  if (tag) {
-                    return item.attributes.tags.includes(tag);
-                  } else {
-                    return item;
-                  }
-                })
-                .map((item, index) => {
-                  return (
-                    <PostCard
-                      key={index}
-                      post={item}
-                      update={update}
-                      setUpdate={setUpdate}
-                    />
-                  );
-                })
-                .reverse()}
+              {!loading ? (
+                posts
+                  .filter((item) => {
+                    if (tag) {
+                      return item.attributes.tags.includes(tag);
+                    } else {
+                      return item;
+                    }
+                  })
+                  .map((item, index) => {
+                    return (
+                      <PostCard
+                        key={index}
+                        post={item}
+                        update={update}
+                        setUpdate={setUpdate}
+                      />
+                    );
+                  })
+                  .reverse()
+              ) : (
+                <>
+                  {" "}
+                  <PostCardLoading />
+                  <PostCardLoading />
+                  <PostCardLoading />
+                </>
+              )}
             </div>
           </div>
           <div className="max-w-[240px] w-full">
