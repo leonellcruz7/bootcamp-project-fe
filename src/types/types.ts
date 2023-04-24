@@ -80,7 +80,7 @@ export interface CommentsType {
   post_id: string;
   updated_at: string;
   username: string;
-  votes: number;
+  votes: string[];
 }
 
 export interface AddCommentTypes {
@@ -91,6 +91,7 @@ export interface AddCommentTypes {
 
 export interface CommentDetails {
   details: CommentsType;
+  setUpdate: any;
 }
 
 export interface CreatePost {
@@ -106,4 +107,27 @@ export interface Post {
 
 export interface Username {
   username: string;
+}
+
+export interface Reply {
+  comment_id: string;
+  created_at: Date;
+  id: string;
+  message: string;
+  updated_at: Date;
+  user: string;
+  votes: string[];
+}
+
+export interface ReplyTypes {
+  reply: Reply;
+}
+
+export interface ReplyBody {
+  message: string;
+  user: string;
+  comment_id: string;
+}
+export interface ReplyBodyTypes {
+  body: ReplyBody;
 }
