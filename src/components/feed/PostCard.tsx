@@ -17,6 +17,7 @@ import { deleteButtonVariants } from "../../framer-motion/variants";
 
 const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
   const [info, setInfo] = useState<any>();
+  const [loading, setLoading] = useState(true);
   const [buttonAnimate, setButtonAnimate] = useState("close");
   // console.log("post", post.attributes);
   // console.log("info", info?.data.attributes.votes);
@@ -26,7 +27,7 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
   const votes = info?.data.attributes.votes;
   const post_owner = post.attributes.user_id.toString();
   useEffect(() => {
-    getPostDetails(post.id, setInfo);
+    getPostDetails(post.id, setInfo, setLoading);
   }, [post.id, infoUpdate]);
 
   const handleDelete = () => {
@@ -111,23 +112,26 @@ const PostCard: FC<PostTypes> = ({ post, update, setUpdate }) => {
                   <i className="icon ri-delete-bin-6-line"></i>
                 </button>
                 <motion.div
-                  className="absolute top-0 right-[-130px] flex gap-1"
+                  className="absolute top-0 right-[-240px] flex gap-1"
                   variants={deleteButtonVariants}
                   animate={buttonAnimate}
                   initial="close"
                 >
-                  <button
-                    onClick={handleDeleteAnimate}
-                    className="button primary-button small"
-                  >
-                    no
-                  </button>
-                  <button
-                    onClick={handleDelete}
-                    className="button primary-button danger small"
-                  >
-                    yes
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <p className="truncate min-w-[100px]">Are you sure?</p>
+                    <button
+                      onClick={handleDeleteAnimate}
+                      className="button primary-button small"
+                    >
+                      no
+                    </button>
+                    <button
+                      onClick={handleDelete}
+                      className="button primary-button danger small"
+                    >
+                      yes
+                    </button>
+                  </div>
                 </motion.div>
               </div>
             </>

@@ -7,10 +7,12 @@ import { setPost } from "../redux/posts/create-post";
 import Cookies from "universal-cookie";
 import { useParams } from "react-router-dom";
 import { getPostDetails } from "../actions/posts";
+import ViewPostLoading from "./LoadingCards/ViewPostLoading";
 
 export default function CreatePostCard() {
   const dispatch = useDispatch();
   const [info, setInfo] = useState<any>();
+  const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const params = useParams();
@@ -40,7 +42,8 @@ export default function CreatePostCard() {
   };
 
   useEffect(() => {
-    if (postid) getPostDetails(postid, setInfo);
+    if (postid) getPostDetails(postid, setInfo, setLoading);
+    else setLoading(false);
   }, [postid]);
 
   const data = info?.data?.attributes;
@@ -62,42 +65,48 @@ export default function CreatePostCard() {
     );
   }, [title, body, selectedTags, current_user, dispatch]);
   return (
-    <div className="create-card">
-      <div className="form-wrapper">
-        <Input
-          value={title}
-          placeholder={data?.title}
-          label="Title"
-          error="test"
-          type="text"
-          onChange={handleTitle}
-          showError={false}
-        />{" "}
-        <Textarea
-          height="h-[320px]"
-          value={body}
-          placeholder={data?.body}
-          label="Body"
-          error="test"
-          onChange={handleBody}
-          showError={false}
-        />
-        <div>
-          <p>Tags</p>
-          <div className="tags-wrapper">
-            {tags.map((item, index) => {
-              return (
-                <Tags
-                  key={index}
-                  label={item}
-                  active={selectedTags?.includes(item)}
-                  onClick={handleTags.bind(null, item)}
-                />
-              );
-            })}{" "}
+    <>
+      {!loading ? (
+        <div className="create-card">
+          <div className="form-wrapper">
+            <Input
+              value={title}
+              placeholder={data?.title}
+              label="Title"
+              error="test"
+              type="text"
+              onChange={handleTitle}
+              showError={false}
+            />{" "}
+            <Textarea
+              height="h-[320px]"
+              value={body}
+              placeholder={data?.body}
+              label="Body"
+              error="test"
+              onChange={handleBody}
+              showError={false}
+            />
+            <div>
+              <p>Tags</p>
+              <div className="tags-wrapper">
+                {tags.map((item, index) => {
+                  return (
+                    <Tags
+                      key={index}
+                      label={item}
+                      active={selectedTags?.includes(item)}
+                      onClick={handleTags.bind(null, item)}
+                    />
+                  );
+                })}{" "}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <ViewPostLoading />
+      )}
+    </>
   );
 }
