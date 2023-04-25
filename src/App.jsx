@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<Signup />} />
-          <Route path="/" element={<Feed />} />
+          <Route path="/" element={<ProtectedRoute element={<Feed />} />} />
           <Route path="/search" element={<Search />} />
           <Route
             path="/profile/:username"
@@ -47,7 +47,7 @@ export default App;
 
 const ProtectedRoute = ({ element }) => {
   const cookie = new Cookies();
-  const current_user = cookie.get("user_id");
+  const current_user = cookie.get("access_token");
 
   if (current_user) {
     return element;
