@@ -43,14 +43,15 @@ export const login = async ({ username, password }: LoginTypes) => {
   try {
     const response = await api.post("/api/v1/users/login", body);
     const user = {
-      user_id: response.data.data.id,
-      username: response.data.data.attributes.username,
-      email: response.data.data.attributes.email.toString(),
+      user_id: response.data.user.id,
+      username: response.data.user.username,
+      email: response.data.user.email.toString(),
     };
-    console.log(response.data.data);
+    console.log(response);
     cookie.set("user_id", user.user_id, { path: "/" });
     cookie.set("username", user.username, { path: "/" });
     cookie.set("email", user.email, { path: "/" });
+    cookie.set("access_token", response.data.token, { path: "/" });
     Swal.fire("Good Job!", "Sign in successful!", "success");
     setTimeout(() => {
       window.location.href = "/";
@@ -67,9 +68,9 @@ export const login = async ({ username, password }: LoginTypes) => {
 };
 
 export const logout = () => {
-  const allCookies = cookie.getAll();
-  for (const cookieName in allCookies) {
-    cookie.remove(cookieName);
-  }
+  cookie.remove("username");
+  cookie.remove("user_id");
+  cookie.remove("email");
+  cookie.remove("access_token");
   window.location.href = "/login";
 };
