@@ -12,9 +12,13 @@ export const signup = async ({
   navigate,
 }: SignupTypes) => {
   const body = {
-    email: email,
-    username: username,
-    password_digest: password,
+    user: {
+      firstname: "",
+      lastname: "",
+      email: email,
+      username: username,
+      password: password,
+    },
   };
   console.log(body);
 
