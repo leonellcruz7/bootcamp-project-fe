@@ -14,7 +14,7 @@ export const signup = async ({
   const body = {
     email: email,
     username: username,
-    password: password,
+    password_digest: password,
   };
   console.log(body);
 
